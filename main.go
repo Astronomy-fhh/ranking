@@ -1,12 +1,11 @@
 package main
 
 import (
-	"GoLearn/GoZset/list"
-	"GoLearn/GoZset/zset"
 	"bufio"
 	"fmt"
-	"math/rand"
 	"os"
+	"ranking/list"
+	"ranking/zset"
 )
 
 
@@ -52,9 +51,15 @@ func initClient(zset *zset.ZSet)  {
 }
 
 func test(zset *zset.ZSet)  {
-	for i := 0; i < 10000; i++ {
-		n := rand.Int63n(1000000)
-		zset.Add(n,n)
+	for i := 0; i < 10; i++ {
+		//n := rand.Int63n(10)
+		zset.Add(int64(i),int64(i))
+	}
+
+	for i := 0; i < 5; i++ {
+		//n := rand.Int63n(10)
+		del := zset.Del(int64(i),int64(i))
+		println(del)
 	}
 
 	op := zset.Zsl.Header

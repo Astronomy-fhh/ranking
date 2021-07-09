@@ -1,8 +1,8 @@
 package zset
 
 import (
-    "GoLearn/GoZset/list"
-    "GoLearn/GoZset/node"
+    "ranking/list"
+    "ranking/node"
 )
 
 type ZSet struct {
@@ -12,4 +12,9 @@ type ZSet struct {
 
 func (this *ZSet) Add(key,score int64)node.Node  {
     return this.Zsl.Add(key,score)
+}
+
+
+func (this *ZSet) Del(key, score int64)bool  {
+    return this.Zsl.Del(key,score)
 }

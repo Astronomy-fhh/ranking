@@ -1,12 +1,14 @@
 package list
 
 import (
-	"GoLearn/GoZset/node"
 	"math/rand"
+	"ranking/node"
 )
 
-// zKipList max layer
-const ZML = 32
+// zSkipList max layer
+const ZSLML = 32
+// zKipList
+const ZSLP = 0.4
 
 type ZSkipList struct {
 	Header *node.Node
@@ -20,9 +22,9 @@ func NewZSkipList() *ZSkipList {
 	zsl.Layers = 1
 	zsl.Len = 0
 	header := node.Node{}
-	var layer = make([]*node.LayerNode, ZML)
+	var layer = make([]*node.LayerNode, ZSLML)
 
-	for i := 0; i < ZML; i++ {
+	for i := 0; i < ZSLML; i++ {
 		layer[i] = &node.LayerNode{Span: uint64(i)}
 	}
 
@@ -36,7 +38,7 @@ func (this *ZSkipList) Add(key, score int64)node.Node {
 
 	op := this.Header
 	needUpdateLayer := make(map[int]*node.Node)
-	rank := make([]uint64,ZML)
+	rank := make([]uint64,ZSLML)
 
 	// to find a op node
 
@@ -57,7 +59,7 @@ func (this *ZSkipList) Add(key, score int64)node.Node {
 		needUpdateLayer[i] = op
 	}
 
-	layers := rand.Intn(20)
+	layers := getRandLayer()
 
 	if layers > this.Layers {
 		for i := this.Layers; i < layers; i++ {
@@ -99,4 +101,55 @@ func (this *ZSkipList) Add(key, score int64)node.Node {
 
 	this.Len++
 	return *op
+}
+
+func (this *ZSkipList) Del(key, score int64)bool {
+
+	needUpdateLayer := make(map[int]*node.Node)
+
+	op := this.Header
+	for i := this.Layers - 1; i >= 0 ; i-- {
+		for op.Layer[i].ForwardNode != nil && op.Layer[i].ForwardNode.Score < score {
+			op = op.Layer[i].ForwardNode
+		}
+		needUpdateLayer[i] = op
+	}
+
+	op = op.Layer[0].ForwardNode
+	if op != nil && op.Score == score && op.Key == key {
+		for i := 0; i < this.Layers; i++ {
+			if needUpdateLayer[i].Layer[i].ForwardNode == op {
+				needUpdateLayer[i].Layer[i].Span += op.Layer[i].Span - 1
+				needUpdateLayer[i].Layer[i].ForwardNode = op.Layer[i].ForwardNode
+			}else{
+				needUpdateLayer[i].Layer[i].Span -= 1
+			}
+		}
+
+		if op.Layer[0].ForwardNode != nil {
+			op.Layer[0].ForwardNode.BackwardNode = op.BackwardNode
+		}else{
+			this.Tail = op.BackwardNode
+		}
+
+		for this.Layers > 1 && this.Header.Layer[this.Layers - 1].ForwardNode == nil {
+			this.Layers --
+		}
+		this.Len --
+		return true
+	}
+
+	return false
+}
+
+
+func getRandLayer()int  {
+	layers := 1
+	for rand.Float32() < ZSLP {
+		layers ++
+	}
+	if  layers < ZSLML{
+		return layers
+	}
+	return ZSLML
 }
