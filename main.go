@@ -1,19 +1,37 @@
 package main
 
 import (
-	"bufio"
+	"encoding/json"
 	"fmt"
-	"os"
+	"log"
+	"math/rand"
+	"net/http"
 	"ranking/list"
 	"ranking/zset"
+	"runtime"
 )
 
 
 func main() {
 	container := initContainer()
-	//initClient(container)
 	test(container)
+	startGraphServer(container)
 }
+
+func startGraphServer(zset *zset.ZSet)  {
+	http.HandleFunc("/zSkipListGraph", func(writer http.ResponseWriter, request *http.Request) {
+		writer.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
+		writer.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
+		writer.Header().Set("content-type", "application/json")
+		marshal, err := json.Marshal(zset.GraphZsl())
+		if err != nil {
+			_, _ = writer.Write([]byte(err.Error()))
+		}
+		_, _ = writer.Write(marshal)
+	})
+	_ = http.ListenAndServe(":8087", nil)
+}
+
 
 func initContainer()*zset.ZSet  {
 	fmt.Println("initContainer...")
@@ -24,49 +42,23 @@ func initContainer()*zset.ZSet  {
 	return zset
 }
 
-func initClient(zset *zset.ZSet)  {
-
-	var key int64
-	var score int64
-	for  {
-		fmt.Println("tab key：")
-		stdin := bufio.NewReader(os.Stdin)
-		val, err := fmt.Fscan(stdin, &key)
-		if err != nil  {
-			fmt.Println("tab err:",val)
-			continue
-		}
-
-		fmt.Println("tab score：")
-		val, err = fmt.Fscan(stdin, &score)
-		if err != nil  {
-			fmt.Println("tab err:",val)
-			continue
-		}
-
-		addNode := zset.Add(key, score)
-		fmt.Printf("%v", addNode)
-		fmt.Println("ok")
-	}
-}
-
 func test(zset *zset.ZSet)  {
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100000; i++ {
 		//n := rand.Int63n(10)
-		zset.Add(int64(i),int64(i))
+		zset.Add(int64(rand.Intn(100000000)),int64(rand.Intn(100000000)))
 	}
+	var ms runtime.MemStats
+	runtime.ReadMemStats(&ms)
+	log.Printf("Alloc:%d(Mb) HeapIdle:%d(MB) HeapReleased:%d(MB)", ms.Alloc / 1024, ms.HeapIdle /1024, ms.HeapReleased/1024)
 
-	for i := 0; i < 5; i++ {
-		//n := rand.Int63n(10)
-		del := zset.Del(int64(i),int64(i))
-		println(del)
-	}
 
-	op := zset.Zsl.Header
-	for op.Layer[0].ForwardNode != nil  {
-		score := op.Layer[0].ForwardNode.Score
-		println(score)
-		op = op.Layer[0].ForwardNode
-	}
+	//for i := 0; i < 5; i++ {
+	//	//n := rand.Int63n(10)
+	//	del := zset.Del(int64(i),int64(i))
+	//	println(del)
+	//}
+
+	//zsl := zset.GraphZsl()
+	//fmt.Printf("%v",zsl)
 }
 

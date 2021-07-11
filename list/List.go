@@ -1,6 +1,7 @@
 package list
 
 import (
+	"fmt"
 	"math/rand"
 	"ranking/node"
 )
@@ -152,4 +153,42 @@ func getRandLayer()int  {
 		return layers
 	}
 	return ZSLML
+}
+
+func (this *ZSkipList) GraphPrint()interface{}  {
+
+	op := this.Header
+	data := make([]interface{},0)
+
+	res := make(map[string]interface{})
+	res["key"] =  "head"
+	res["score"] = "head"
+	res["point"] = fmt.Sprintf("%p",op)
+	res["span"] = op.Layer[0].Span
+
+	layer := make([]interface{},len(op.Layer))
+	for i := 0; i < len(op.Layer); i++ {
+		layer[i] = fmt.Sprintf("%p",op.Layer[i].ForwardNode)
+	}
+	res["layer"] = layer
+	data = append(data, res)
+
+	for op.Layer[0].ForwardNode != nil {
+		curNode := op.Layer[0].ForwardNode
+
+		res := make(map[string]interface{})
+		res["key"] =  curNode.Key
+		res["score"] = curNode.Score
+		res["point"] = fmt.Sprintf("%p",curNode)
+		res["span"] = op.Layer[0].Span
+
+		layer := make([]interface{},len(curNode.Layer))
+		for i := 0; i < len(curNode.Layer); i++ {
+			layer[i] = fmt.Sprintf("%p",curNode.Layer[i].ForwardNode)
+		}
+		res["layer"] = layer
+		data = append(data, res)
+		op = curNode
+	}
+	return data
 }
