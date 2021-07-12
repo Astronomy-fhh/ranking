@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c21bee2f-7d41-40e4-9616-a278d8a90f1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Graph/graphZSkipList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/list/List.go" beforeDir="false" afterPath="$PROJECT_DIR$/list/List.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list/List.go" beforeDir="false" afterPath="$PROJECT_DIR$/container/zlist.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/node/Node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/container/node.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zset/Zset.go" beforeDir="false" afterPath="$PROJECT_DIR$/zset/Zset.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +71,11 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/container" />
+    </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go &amp;&amp; GODEBUG='gctrace=1'">
     <configuration name="go build List.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -130,22 +134,22 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1038" height="740" key="GridCell.Tab.0.bottom" timestamp="1626074943765">
+    <state width="1038" height="763" key="GridCell.Tab.0.bottom" timestamp="1626082560010">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="740" key="GridCell.Tab.0.bottom/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943765" />
-    <state width="1038" height="740" key="GridCell.Tab.0.center" timestamp="1626074943763">
+    <state width="1038" height="763" key="GridCell.Tab.0.bottom/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560010" />
+    <state width="1038" height="763" key="GridCell.Tab.0.center" timestamp="1626082560008">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="740" key="GridCell.Tab.0.center/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943763" />
-    <state width="1038" height="740" key="GridCell.Tab.0.left" timestamp="1626074943761">
+    <state width="1038" height="763" key="GridCell.Tab.0.center/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560008" />
+    <state width="1038" height="763" key="GridCell.Tab.0.left" timestamp="1626082560007">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="740" key="GridCell.Tab.0.left/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943761" />
-    <state width="1038" height="740" key="GridCell.Tab.0.right" timestamp="1626074943764">
+    <state width="1038" height="763" key="GridCell.Tab.0.left/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560007" />
+    <state width="1038" height="763" key="GridCell.Tab.0.right" timestamp="1626082560009">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="740" key="GridCell.Tab.0.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943764" />
+    <state width="1038" height="763" key="GridCell.Tab.0.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560009" />
     <state width="1038" height="559" key="GridCell.Tab.1.bottom" timestamp="1626066979763">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
@@ -162,17 +166,20 @@
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
     <state width="1038" height="559" key="GridCell.Tab.1.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979762" />
+    <state x="241" y="726" width="598" height="490" key="find.popup" timestamp="1626088248903">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="241" y="726" width="598" height="490" key="find.popup/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626088248903" />
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup" timestamp="1626087779528">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626087779528" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/main.go</url>
-          <line>27</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/list/List.go</url>
+          <url>file://$PROJECT_DIR$/container/zlist.go</url>
           <line>197</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>

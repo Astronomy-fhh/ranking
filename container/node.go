@@ -1,8 +1,7 @@
-package node
+package container
 
 type Node struct {
-	Key int64
-	Score int64
+	Obj *Obj
 	Layer        [] *LayerNode
 	BackwardNode *Node
 }
@@ -12,11 +11,8 @@ type LayerNode struct {
 	Span int64
 }
 
-func newNode(layer,score int64)Node  {
-	var node Node
-	node.Score = score
-	return node
+type Obj struct {
+	Key string
+	Score int64
 }
-
-
 
