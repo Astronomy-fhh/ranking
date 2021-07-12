@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c21bee2f-7d41-40e4-9616-a278d8a90f1d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ranking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ranking.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graph/graphZSkipList.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/list/List.go" beforeDir="false" afterPath="$PROJECT_DIR$/list/List.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/node/Node.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zset/Zset.go" beforeDir="false" afterPath="$PROJECT_DIR$/zset/Zset.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +52,7 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1v7SBNarfhdlgPzIg75iyqOqWth" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -54,6 +74,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Go Build.go build main.go &amp;&amp; GODEBUG='gctrace=1'">
+    <configuration name="go build List.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/list/List.go" />
+      <package value="ranking" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go &amp;&amp; GODEBUG='gctrace=1'" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$" />
@@ -78,6 +107,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go &amp;&amp; GODEBUG='gctrace=1'" />
+        <item itemvalue="Go Build.go build List.go" />
         <item itemvalue="JavaScript Debug.graphZSkipList.html" />
         <item itemvalue="Go Build.go build ranking" />
       </list>
@@ -87,18 +117,64 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1038" height="740" key="GridCell.Tab.0.bottom" timestamp="1626074943765">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="740" key="GridCell.Tab.0.bottom/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943765" />
+    <state width="1038" height="740" key="GridCell.Tab.0.center" timestamp="1626074943763">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="740" key="GridCell.Tab.0.center/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943763" />
+    <state width="1038" height="740" key="GridCell.Tab.0.left" timestamp="1626074943761">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="740" key="GridCell.Tab.0.left/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943761" />
+    <state width="1038" height="740" key="GridCell.Tab.0.right" timestamp="1626074943764">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="740" key="GridCell.Tab.0.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626074943764" />
+    <state width="1038" height="559" key="GridCell.Tab.1.bottom" timestamp="1626066979763">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="559" key="GridCell.Tab.1.bottom/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979763" />
+    <state width="1038" height="559" key="GridCell.Tab.1.center" timestamp="1626066979761">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="559" key="GridCell.Tab.1.center/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979761" />
+    <state width="1038" height="559" key="GridCell.Tab.1.left" timestamp="1626066979759">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="559" key="GridCell.Tab.1.left/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979759" />
+    <state width="1038" height="559" key="GridCell.Tab.1.right" timestamp="1626066979762">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="559" key="GridCell.Tab.1.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979762" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
-          <line>25</line>
-          <option name="timeStamp" value="3" />
+          <line>27</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/main.go</url>
-          <line>14</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/list/List.go</url>
+          <line>197</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

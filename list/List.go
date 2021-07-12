@@ -1,7 +1,6 @@
 package list
 
 import (
-	"fmt"
 	"math/rand"
 	"ranking/node"
 )
@@ -14,7 +13,7 @@ const ZSLP = 0.4
 type ZSkipList struct {
 	Header *node.Node
 	Tail   *node.Node
-	Len    uint64
+	Len    int64
 	Layers int
 }
 
@@ -26,7 +25,7 @@ func NewZSkipList() *ZSkipList {
 	var layer = make([]*node.LayerNode, ZSLML)
 
 	for i := 0; i < ZSLML; i++ {
-		layer[i] = &node.LayerNode{Span: uint64(i)}
+		layer[i] = &node.LayerNode{Span: int64(i)}
 	}
 
 	header.Layer = layer
@@ -35,17 +34,17 @@ func NewZSkipList() *ZSkipList {
 	return &zsl
 }
 
-func (this *ZSkipList) Add(key, score int64)node.Node {
+func (zkl *ZSkipList) Add(key, score int64)node.Node {
 
-	op := this.Header
+	op := zkl.Header
 	needUpdateLayer := make(map[int]*node.Node)
-	rank := make([]uint64,ZSLML)
+	rank := make([]int64,ZSLML)
 
 	// to find a op node
 
-	//skip the layer
-	for i := this.Layers - 1; i >= 0; i-- {
-		if i == this.Layers {
+	// skip the layer
+	for i := zkl.Layers - 1; i >= 0; i-- {
+		if i == zkl.Layers {
 			rank[i] = 0
 		} else {
 			rank[i] = rank[i+1]
@@ -62,14 +61,17 @@ func (this *ZSkipList) Add(key, score int64)node.Node {
 
 	layers := getRandLayer()
 
-	if layers > this.Layers {
-		for i := this.Layers; i < layers; i++ {
-			needUpdateLayer[i] = this.Header
-			needUpdateLayer[i].Layer[i].Span = this.Len
+	// if the level of new node is higher than header
+	// init header's top layer span and append them to the needUpdateLayer
+	if layers > zkl.Layers {
+		for i := zkl.Layers; i < layers; i++ {
+			needUpdateLayer[i] = zkl.Header
+			needUpdateLayer[i].Layer[i].Span = zkl.Len
 		}
-		this.Layers = layers
+		zkl.Layers = layers
 	}
 
+	// init a new node
 	layerNode := make([]*node.LayerNode,layers)
 	for i := 0; i < layers; i++ {
 		layerNode[i] = &node.LayerNode{}
@@ -80,6 +82,7 @@ func (this *ZSkipList) Add(key, score int64)node.Node {
 		Layer: layerNode,
 	}
 
+	// update needUpdateLayer's layer pointer and span
 	for i := 0; i < layers; i++ {
 		op.Layer[i].ForwardNode = needUpdateLayer[i].Layer[i].ForwardNode
 		needUpdateLayer[i].Layer[i].ForwardNode = op
@@ -87,29 +90,31 @@ func (this *ZSkipList) Add(key, score int64)node.Node {
 		needUpdateLayer[i].Layer[i].Span = rank[0] - rank[i] + 1
 	}
 
-	for i := layers; i < this.Layers; i++ {
+	for i := layers; i < zkl.Layers; i++ {
 		needUpdateLayer[i].Layer[i].Span ++
 	}
 
-	if needUpdateLayer[0] != this.Header {
+	if needUpdateLayer[0] != zkl.Header {
 		op.BackwardNode = needUpdateLayer[0]
 	}
+
+	// change tail pointer
 	if op.Layer[0].ForwardNode != nil {
 		op.Layer[0].ForwardNode.BackwardNode = op
 	}else {
-		this.Tail = op
+		zkl.Tail = op
 	}
 
-	this.Len++
+	zkl.Len++
 	return *op
 }
 
-func (this *ZSkipList) Del(key, score int64)bool {
+func (zkl *ZSkipList) Del(key, score int64)bool {
 
 	needUpdateLayer := make(map[int]*node.Node)
 
-	op := this.Header
-	for i := this.Layers - 1; i >= 0 ; i-- {
+	op := zkl.Header
+	for i := zkl.Layers - 1; i >= 0 ; i-- {
 		for op.Layer[i].ForwardNode != nil && op.Layer[i].ForwardNode.Score < score {
 			op = op.Layer[i].ForwardNode
 		}
@@ -118,29 +123,33 @@ func (this *ZSkipList) Del(key, score int64)bool {
 
 	op = op.Layer[0].ForwardNode
 	if op != nil && op.Score == score && op.Key == key {
-		for i := 0; i < this.Layers; i++ {
-			if needUpdateLayer[i].Layer[i].ForwardNode == op {
-				needUpdateLayer[i].Layer[i].Span += op.Layer[i].Span - 1
-				needUpdateLayer[i].Layer[i].ForwardNode = op.Layer[i].ForwardNode
-			}else{
-				needUpdateLayer[i].Layer[i].Span -= 1
-			}
-		}
-
-		if op.Layer[0].ForwardNode != nil {
-			op.Layer[0].ForwardNode.BackwardNode = op.BackwardNode
-		}else{
-			this.Tail = op.BackwardNode
-		}
-
-		for this.Layers > 1 && this.Header.Layer[this.Layers - 1].ForwardNode == nil {
-			this.Layers --
-		}
-		this.Len --
+		zkl.delNode(op,needUpdateLayer)
 		return true
 	}
 
 	return false
+}
+
+func (zkl *ZSkipList) delNode(op *node.Node,  needUpdateLayer map[int]*node.Node)  {
+	for i := 0; i < zkl.Layers; i++ {
+		if needUpdateLayer[i].Layer[i].ForwardNode == op {
+			needUpdateLayer[i].Layer[i].Span += op.Layer[i].Span - 1
+			needUpdateLayer[i].Layer[i].ForwardNode = op.Layer[i].ForwardNode
+		}else{
+			needUpdateLayer[i].Layer[i].Span -= 1
+		}
+	}
+
+	if op.Layer[0].ForwardNode != nil {
+		op.Layer[0].ForwardNode.BackwardNode = op.BackwardNode
+	}else{
+		zkl.Tail = op.BackwardNode
+	}
+
+	for zkl.Layers > 1 && zkl.Header.Layer[zkl.Layers - 1].ForwardNode == nil {
+		zkl.Layers --
+	}
+	zkl.Len --
 }
 
 
@@ -155,40 +164,145 @@ func getRandLayer()int  {
 	return ZSLML
 }
 
-func (this *ZSkipList) GraphPrint()interface{}  {
+func (zkl *ZSkipList) Update(Key, curScore,newScore int64)bool {
 
-	op := this.Header
-	data := make([]interface{},0)
-
-	res := make(map[string]interface{})
-	res["key"] =  "head"
-	res["score"] = "head"
-	res["point"] = fmt.Sprintf("%p",op)
-	res["span"] = op.Layer[0].Span
-
-	layer := make([]interface{},len(op.Layer))
-	for i := 0; i < len(op.Layer); i++ {
-		layer[i] = fmt.Sprintf("%p",op.Layer[i].ForwardNode)
-	}
-	res["layer"] = layer
-	data = append(data, res)
-
-	for op.Layer[0].ForwardNode != nil {
-		curNode := op.Layer[0].ForwardNode
-
-		res := make(map[string]interface{})
-		res["key"] =  curNode.Key
-		res["score"] = curNode.Score
-		res["point"] = fmt.Sprintf("%p",curNode)
-		res["span"] = op.Layer[0].Span
-
-		layer := make([]interface{},len(curNode.Layer))
-		for i := 0; i < len(curNode.Layer); i++ {
-			layer[i] = fmt.Sprintf("%p",curNode.Layer[i].ForwardNode)
+	needUpdateLayer := make(map[int]*node.Node)
+	op := zkl.Header
+	for i := zkl.Layers - 1; i >= 0; i-- {
+		for op.Layer[i].ForwardNode != nil && op.Layer[i].ForwardNode.Score < curScore {
+			op = op.Layer[i].ForwardNode
 		}
-		res["layer"] = layer
-		data = append(data, res)
-		op = curNode
+		needUpdateLayer[i] = op
 	}
-	return data
+
+	op = op.Layer[0].ForwardNode
+	if op != nil && op.Score == curScore && op.Key == Key {
+		if (op.BackwardNode == nil || op.BackwardNode.Score < newScore) && (op.Layer[0].ForwardNode == nil || op.Layer[0].ForwardNode.Score > newScore){
+			op.Score = newScore
+			return true
+		}
+
+		zkl.delNode(op,needUpdateLayer)
+		zkl.Add(Key,newScore)
+		return true
+	}
+	return false
+}
+
+func (zkl *ZSkipList) GetRangeByRank(start,end int64) []node.Node {
+
+	res := make([]node.Node,0)
+	rank := make([]int64,zkl.Layers)
+
+	op := zkl.Header
+	for i := zkl.Layers - 1; i >= 0 ; i-- {
+		if i == zkl.Layers - 1 {
+			rank[i] = 0
+		}else {
+			rank[i] = rank[i+1]
+		}
+
+		for op.Layer[i].ForwardNode != nil && (rank[i] + op.Layer[i].Span) < start {
+			rank[i] += op.Layer[i].Span
+			op = op.Layer[i].ForwardNode
+		}
+	}
+
+	idx := start
+	for (idx <= end || end == -1) && op.Layer[0].ForwardNode != nil {
+		res = append(res, *op.Layer[0].ForwardNode)
+		op = op.Layer[0].ForwardNode
+		idx ++
+	}
+	return res
+}
+
+func (zkl *ZSkipList) GetRevRangeByRank(start,end int64)[]node.Node  {
+	res := make([]node.Node,0)
+	rank := make([]int64,zkl.Layers)
+	realRank := zkl.Len - start + 1
+
+	op := zkl.Header
+	for i := zkl.Layers - 1; i >= 0 ; i-- {
+		if i == zkl.Layers - 1 {
+			rank[i] = 0
+		}else {
+			rank[i] = rank[i+1]
+		}
+
+		for op.Layer[i].ForwardNode != nil && (rank[i] + op.Layer[i].Span) <= realRank {
+			rank[i] += op.Layer[i].Span
+			op = op.Layer[i].ForwardNode
+		}
+	}
+
+	idx := start
+	for (idx <= end || end == -1) && op != nil && op.BackwardNode != nil {
+		res = append(res, *op)
+		op = op.BackwardNode
+		idx++
+	}
+
+	return res
+}
+
+func (zkl *ZSkipList) GetRangeByScore(start,end int64)[]node.Node  {
+	res := make([]node.Node,0)
+	rank := make([]int64,zkl.Layers)
+
+	op := zkl.Header
+	for i := zkl.Layers - 1; i >= 0 ; i-- {
+		if i == zkl.Layers - 1 {
+			rank[i] = 0
+		}else {
+			rank[i] = rank[i+1]
+		}
+
+		for op.Layer[i].ForwardNode != nil && op.Layer[i].ForwardNode.Score < start {
+			rank[i] += op.Layer[i].Span
+			op = op.Layer[i].ForwardNode
+		}
+	}
+
+	for op.Layer[0].ForwardNode != nil && op.Layer[0].ForwardNode.Score <= end {
+		res = append(res, *op.Layer[0].ForwardNode)
+		op = op.Layer[0].ForwardNode
+	}
+	return res
+}
+
+func (zkl *ZSkipList) GetRevRangeByScore(start,end int64)[]node.Node  {
+	res := make([]node.Node,0)
+	rank := make([]int64,zkl.Layers)
+
+	op := zkl.Header
+	for i := zkl.Layers - 1; i >= 0 ; i-- {
+		if i == zkl.Layers - 1 {
+			rank[i] = 0
+		}else {
+			rank[i] = rank[i+1]
+		}
+
+		for op.Layer[i].ForwardNode != nil && op.Layer[i].ForwardNode.Score <= end {
+			rank[i] += op.Layer[i].Span
+			op = op.Layer[i].ForwardNode
+		}
+	}
+
+
+	for op.BackwardNode != nil && op.Score >= start {
+		res = append(res, *op)
+		op = op.BackwardNode
+	}
+
+	return res
+}
+
+
+
+func (zkl *ZSkipList) isRangeValid(min,max int64)bool {
+	if min < 0 || (max != -1 && max < min) {
+		return false
+	}
+	return true
 }

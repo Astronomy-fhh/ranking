@@ -9,7 +9,7 @@ type Node struct {
 
 type LayerNode struct {
 	ForwardNode *Node
-	Span uint64
+	Span int64
 }
 
 func newNode(layer,score int64)Node  {
