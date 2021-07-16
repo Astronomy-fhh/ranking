@@ -8,11 +8,11 @@ type Node struct {
 
 type LayerNode struct {
 	ForwardNode *Node
-	Span int64
+	Span uint64
 }
 
 type Obj struct {
 	Key string
-	Score int64
+	Score uint64
 }
 

@@ -103,3 +103,33 @@
 {"L":"INFO","T":"2021-07-16 14:22:06","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
 {"L":"INFO","T":"2021-07-16 14:57:01","C":"client/client.go:61","M":"signal received: interrupt"}
 {"L":"INFO","T":"2021-07-16 14:57:15","C":"client/client.go:61","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 15:18:25","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 15:19:37","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 15:20:06","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 15:24:41","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 15:24:52","C":"client/client.go:61","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 15:29:01","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 15:29:11","C":"client/client.go:62","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 15:29:14","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"FATAL","T":"2021-07-16 15:29:14","C":"client/client.go:43","M":"fail to dial:connection error: desc = \"transport: error while dialing: dial tcp 127.0.0.1:11917: connect: connection refused\"","S":"ranking/client/core/client.(*Client).InitHandle\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/core/client/client.go:43\nranking/client/core/client.NewClient\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/core/client/client.go:24\nmain.main\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/main.go:33\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203"}
+{"L":"INFO","T":"2021-07-16 15:30:53","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"FATAL","T":"2021-07-16 15:30:53","C":"client/client.go:45","M":"fail to dial:connection error: desc = \"transport: error while dialing: dial tcp 127.0.0.1:11917: connect: connection refused\"","S":"ranking/client/core/client.(*Client).InitHandle\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/core/client/client.go:45\nranking/client/core/client.NewClient\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/core/client/client.go:25\nmain.main\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/main.go:33\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203"}
+{"L":"INFO","T":"2021-07-16 15:32:33","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"FATAL","T":"2021-07-16 15:32:33","C":"client/client.go:45","M":"fail to dial:connection error: desc = \"transport: error while dialing: dial tcp 127.0.0.1:11917: connect: connection refused\"","S":"ranking/client/core/client.(*Client).InitHandle\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/core/client/client.go:45\nranking/client/core/client.NewClient\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/core/client/client.go:25\nmain.main\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/client/main.go:33\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203"}
+{"L":"INFO","T":"2021-07-16 15:32:38","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 15:32:39","C":"client/client.go:64","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 15:33:38","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 15:33:39","C":"client/client.go:64","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 19:33:08","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 19:37:20","C":"client/client.go:64","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 19:37:40","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 19:42:49","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 19:46:36","C":"client/client.go:64","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 19:51:32","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 20:01:14","C":"client/client.go:64","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 20:01:21","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 20:04:04","C":"client/client.go:64","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 20:04:13","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 20:05:27","C":"client/client.go:64","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-16 20:05:35","C":"config/conf.go:48","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-16 20:07:53","C":"client/client.go:64","M":"signal received: interrupt"}

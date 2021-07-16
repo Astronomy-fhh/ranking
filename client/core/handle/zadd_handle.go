@@ -4,8 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/fatih/color"
-	"os"
 	pb "ranking/proto"
 	"strconv"
 	"time"
@@ -27,7 +25,7 @@ func (h *ZAddHandle) Parse(args []string) error {
 	if len(args) < 1 {
 		return errors.New("args err")
 	}
-	key := args[1]
+	key := args[0]
 	if key == "" {
 		return errors.New("err key")
 	}
@@ -35,18 +33,18 @@ func (h *ZAddHandle) Parse(args []string) error {
 	if len(args) % 2 != 1 {
 		return errors.New("number of mismatches")
 	}
-	sIdx := 2
+	sIdx := 1
 	mIdx := sIdx + 1
 	val := make(map[string]uint64,1)
-	for len(args) != mIdx + 1 {
+	for len(args) > mIdx {
 		score,err := strconv.ParseInt(args[sIdx],10,64)
 		if err != nil {
 			return errors.New(fmt.Sprintf("parse int err for:%s",args[sIdx]))
 		}
 		member := args[mIdx]
 		val[member] = uint64(score)
-		sIdx++
-		mIdx++
+		sIdx += 2
+		mIdx += 2
 	}
 	req := &pb.ZAddReq{
 		Key: key,
@@ -71,12 +69,4 @@ func (h *ZAddHandle) Execute() error {
 func (h *ZAddHandle) Print() error {
 	fmt.Println(h.Resp.String())
 	return nil
-}
-func GreenPrint(str string)  {
-	c := color.New(color.BgGreen).FprintfFunc()
-	c(os.Stdout, str)
-}
-func RedPrint(str string)  {
-	c := color.New(color.FgRed).FprintfFunc()
-	c(os.Stdout, str)
 }

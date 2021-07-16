@@ -1,6 +1,7 @@
 package client
 
 import (
+	"fmt"
 	"google.golang.org/grpc"
 	"os"
 	"os/signal"
@@ -34,12 +35,14 @@ func (c *Client) InitConfig(config *config.ClientConfig)  {
 func (c *Client) InitHandle()  {
 	var opts []grpc.DialOption
 	opts = append(opts, grpc.WithInsecure())
+	opts = append(opts, grpc.FailOnNonTempDialError(true))
 
 	grpcServerAddr := c.Config.HttpAddr
 	opts = append(opts, grpc.WithBlock())
 	conn, err := grpc.Dial(grpcServerAddr, opts...)
 	if err != nil {
-		log.Log.Fatalf("fail to dial:%v",err.Error())
+		fmt.Printf("err:%v",err.Error())
+		log.Log.Fatalf("err:%v",err.Error())
 	}
 	RankClient := pb.NewRankClient(conn)
 	clientHandle := &handle.ClientHandle{

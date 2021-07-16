@@ -6,10 +6,11 @@ import (
 	"os"
 	config2 "ranking/config"
 	"ranking/log"
+	"ranking/server/core/server"
 )
 
 var (
-	conf  = flag.String("conf", "./conf/server.json", "config file path")
+	conf  = flag.String("conf", "/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/conf/server.json", "config file path")
 	logProd  = flag.Bool("logProd", false, "production log")
 )
 
@@ -35,7 +36,7 @@ func main()  {
 		os.Exit(1)
 	}
 
-	server := NewRankServer()
+	server := server.NewRankServer()
 	server.SetConfig(config)
 	server.Run()
 }

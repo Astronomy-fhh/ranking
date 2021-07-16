@@ -9,6 +9,8 @@ service Rank {
 
 }
 
+
+
 message ServerConfig{
   string HttpAddr = 1;
   int32 ListMaxLayer = 2;
@@ -21,7 +23,8 @@ message ZAddReq{
 }
 
 message ZAddResp{
-  uint64 ret = 1;
+  uint64 addC = 1;
+  uint64 updateC = 2;
 }
 
 message ZRemReq{
@@ -39,4 +42,5 @@ enum method {
   ZADD = 0;
   ZREM = 1;
 }
+
 
