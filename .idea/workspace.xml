@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c21bee2f-7d41-40e4-9616-a278d8a90f1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list/List.go" beforeDir="false" afterPath="$PROJECT_DIR$/container/zlist.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node/Node.go" beforeDir="false" afterPath="$PROJECT_DIR$/container/node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zset/Zset.go" beforeDir="false" afterPath="$PROJECT_DIR$/zset/Zset.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf/server.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/container/Zset.go" beforeDir="false" afterPath="$PROJECT_DIR$/container/zset.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ranking-server/main.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,10 +34,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -57,63 +57,102 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/conf" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/container" />
+      <recent name="$PROJECT_DIR$/client/core/handle" />
+      <recent name="$PROJECT_DIR$/client/core/client" />
+      <recent name="$PROJECT_DIR$/client/core" />
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go &amp;&amp; GODEBUG='gctrace=1'">
-    <configuration name="go build List.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="ranking" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/list/List.go" />
-      <package value="ranking" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build main.go &amp;&amp; GODEBUG='gctrace=1'" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="ranking" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
-      <package value="ranking" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build ranking" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.go build ranking/client">
+    <configuration name="go build ranking/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
-      <package value="ranking" />
+      <filePath value="$PROJECT_DIR$/client/main.go" />
+      <package value="ranking/client" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="graphZSkipList.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ranking/Graph/graphZSkipList.html" useBuiltInWebServerPort="true">
+    <configuration name="go build ranking/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/server/main.go" />
+      <package value="ranking/server" />
+      <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestColor in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="ranking/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestColor\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestParse in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="ranking/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestParse\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTrim in ranking/test (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="ranking/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestTrim\E$" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Test.TestTrim in ranking/test (1)" />
+      <item itemvalue="Go Build.go build ranking/client" />
+      <item itemvalue="Go Build.go build ranking/server" />
+      <item itemvalue="Go Test.TestParse in ranking/test" />
+      <item itemvalue="Go Test.TestColor in ranking/test" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build main.go &amp;&amp; GODEBUG='gctrace=1'" />
-        <item itemvalue="Go Build.go build List.go" />
-        <item itemvalue="JavaScript Debug.graphZSkipList.html" />
-        <item itemvalue="Go Build.go build ranking" />
+        <item itemvalue="Go Build.go build ranking/client" />
+        <item itemvalue="Go Test.TestColor in ranking/test" />
+        <item itemvalue="Go Test.TestParse in ranking/test" />
+        <item itemvalue="Go Build.go build ranking/server" />
+        <item itemvalue="Go Test.TestTrim in ranking/test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -133,46 +172,87 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1038" height="763" key="GridCell.Tab.0.bottom" timestamp="1626082560010">
+    <state x="340" y="908" key="#GOROOT" timestamp="1626146215237">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="763" key="GridCell.Tab.0.bottom/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560010" />
-    <state width="1038" height="763" key="GridCell.Tab.0.center" timestamp="1626082560008">
+    <state x="340" y="908" key="#GOROOT/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626146215237" />
+    <state x="340" y="812" key="#Go_Modules" timestamp="1626158049152">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="763" key="GridCell.Tab.0.center/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560008" />
-    <state width="1038" height="763" key="GridCell.Tab.0.left" timestamp="1626082560007">
+    <state x="340" y="812" key="#Go_Modules/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626158049152" />
+    <state x="4" y="633" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626247877178">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="763" key="GridCell.Tab.0.left/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560007" />
-    <state width="1038" height="763" key="GridCell.Tab.0.right" timestamp="1626082560009">
+    <state x="4" y="633" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626247877178" />
+    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1626405356314">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="763" key="GridCell.Tab.0.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626082560009" />
-    <state width="1038" height="559" key="GridCell.Tab.1.bottom" timestamp="1626066979763">
+    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626405356314" />
+    <state width="1038" height="473" key="GridCell.Tab.0.bottom" timestamp="1626416460828">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
+    <state width="1038" height="473" key="GridCell.Tab.0.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626416460828" />
+    <state width="1038" height="504" key="GridCell.Tab.0.bottom/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626165919323" />
+    <state width="1038" height="473" key="GridCell.Tab.0.center" timestamp="1626416460827">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="473" key="GridCell.Tab.0.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626416460827" />
+    <state width="1038" height="504" key="GridCell.Tab.0.center/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626165919321" />
+    <state width="1038" height="473" key="GridCell.Tab.0.left" timestamp="1626416460826">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="473" key="GridCell.Tab.0.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626416460826" />
+    <state width="1038" height="504" key="GridCell.Tab.0.left/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626165919320" />
+    <state width="1038" height="473" key="GridCell.Tab.0.right" timestamp="1626416460827">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="473" key="GridCell.Tab.0.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626416460827" />
+    <state width="1038" height="504" key="GridCell.Tab.0.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626165919322" />
+    <state width="1038" height="460" key="GridCell.Tab.1.bottom" timestamp="1626407594069">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626407594069" />
     <state width="1038" height="559" key="GridCell.Tab.1.bottom/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979763" />
-    <state width="1038" height="559" key="GridCell.Tab.1.center" timestamp="1626066979761">
+    <state width="1038" height="460" key="GridCell.Tab.1.center" timestamp="1626407594069">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626407594069" />
     <state width="1038" height="559" key="GridCell.Tab.1.center/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979761" />
-    <state width="1038" height="559" key="GridCell.Tab.1.left" timestamp="1626066979759">
+    <state width="1038" height="460" key="GridCell.Tab.1.left" timestamp="1626407594069">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626407594069" />
     <state width="1038" height="559" key="GridCell.Tab.1.left/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979759" />
-    <state width="1038" height="559" key="GridCell.Tab.1.right" timestamp="1626066979762">
+    <state width="1038" height="460" key="GridCell.Tab.1.right" timestamp="1626407594069">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626407594069" />
     <state width="1038" height="559" key="GridCell.Tab.1.right/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626066979762" />
-    <state x="241" y="726" width="598" height="490" key="find.popup" timestamp="1626088248903">
+    <state x="49" y="610" key="SettingsEditor" timestamp="1626159811084">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
+    <state x="49" y="610" key="SettingsEditor/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626159811084" />
+    <state x="270" y="710" width="540" height="524" key="StructurePopup" timestamp="1626353067727">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="270" y="710" width="540" height="524" key="StructurePopup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626353067727" />
+    <state width="282" height="419" key="documentation.popup.size" timestamp="1626352730027">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="282" height="419" key="documentation.popup.size/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626352730027" />
+    <state x="241" y="726" width="598" height="490" key="find.popup" timestamp="1626417936017">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="241" y="726" width="598" height="490" key="find.popup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626417936017" />
     <state x="241" y="726" width="598" height="490" key="find.popup/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626088248903" />
-    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup" timestamp="1626087779528">
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup" timestamp="1626322265561">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626322265561" />
     <state x="205" y="468" width="670" height="676" key="search.everywhere.popup/0.23.1080.1897/-1920.322.1920.1057@0.23.1080.1897" timestamp="1626087779528" />
   </component>
   <component name="XDebuggerManager">
@@ -182,6 +262,51 @@
           <url>file://$PROJECT_DIR$/container/zlist.go</url>
           <line>197</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/handle/handle.go</url>
+          <line>31</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/server/main.go</url>
+          <line>37</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/test/string_test.go</url>
+          <line>15</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/test/string_test.go</url>
+          <line>9</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/test/parse_test.go</url>
+          <line>15</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/client/core/handle/baseHandle.go</url>
+          <line>9</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/client/core/handle/zadd_handle.go</url>
+          <line>58</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/client/core/handle/zadd_handle.go</url>
+          <line>23</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/client/core/handle/zadd_handle.go</url>
+          <line>70</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

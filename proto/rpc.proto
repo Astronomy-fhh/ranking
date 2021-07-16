@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "ranking/proto";
+
+service Rank {
+  rpc ZAdd (ZAddReq) returns (ZAddResp){}
+  rpc ZRem (ZRemReq) returns (ZRemResp){}
+
+}
+
+message ServerConfig{
+  string HttpAddr = 1;
+  int32 ListMaxLayer = 2;
+  float ListLayerFactor =3;
+}
+
+message ZAddReq{
+  string key = 1;
+  map<string,uint64>val = 2;
+}
+
+message ZAddResp{
+  uint64 ret = 1;
+}
+
+message ZRemReq{
+  string key = 1;
+  string val = 2;
+}
+
+message ZRemResp{
+  int32 count = 1;
+}
+
+
+
+enum method {
+  ZADD = 0;
+  ZREM = 1;
+}
+

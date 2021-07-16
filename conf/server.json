@@ -1,0 +1,5 @@
+{
+  "HttpAddr":":11917",
+  "ListMaxLayer": 32,
+  "ListLayerFactor": 0.4
+}
