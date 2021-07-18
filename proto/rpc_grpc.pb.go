@@ -32,7 +32,7 @@ func NewRankClient(cc grpc.ClientConnInterface) RankClient {
 
 func (c *rankClient) ZAdd(ctx context.Context, in *ZAddReq, opts ...grpc.CallOption) (*ZAddResp, error) {
 	out := new(ZAddResp)
-	err := c.cc.Invoke(ctx, "/pb.Rank/ZAdd", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZAdd", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func (c *rankClient) ZAdd(ctx context.Context, in *ZAddReq, opts ...grpc.CallOpt
 
 func (c *rankClient) ZRem(ctx context.Context, in *ZRemReq, opts ...grpc.CallOption) (*ZRemResp, error) {
 	out := new(ZRemResp)
-	err := c.cc.Invoke(ctx, "/pb.Rank/ZRem", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func _Rank_ZAdd_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Rank/ZAdd",
+		FullMethod: "/message.Rank/ZAdd",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RankServer).ZAdd(ctx, req.(*ZAddReq))
@@ -108,7 +108,7 @@ func _Rank_ZRem_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Rank/ZRem",
+		FullMethod: "/message.Rank/ZRem",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RankServer).ZRem(ctx, req.(*ZRemReq))
@@ -120,7 +120,7 @@ func _Rank_ZRem_Handler(srv interface{}, ctx context.Context, dec func(interface
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Rank_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.Rank",
+	ServiceName: "message.Rank",
 	HandlerType: (*RankServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

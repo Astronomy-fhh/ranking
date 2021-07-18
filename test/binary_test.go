@@ -35,3 +35,25 @@ func TestBinary(t *testing.T) {
 	binary.Read(bytesBuffer, binary.BigEndian, &j)
 	fmt.Println("j = ", j)
 }
+
+func TestBinary2(t *testing.T) {
+	var i  = 2
+	fmt.Printf("%b ", i)
+	fmt.Printf("\n")
+
+	var j  = 2
+	fmt.Printf("%b ", j)
+	fmt.Printf("\n")
+	b := make([]byte, 4)
+
+	binary.BigEndian.PutUint32(b, uint32(i))
+	for _, bin := range b {
+		fmt.Printf("%b ", bin)
+	}
+	fmt.Printf("\n")
+
+	binary.LittleEndian.PutUint32(b, uint32(j))
+	for _, bin := range b {
+		fmt.Printf("%b ", bin)
+	}
+}

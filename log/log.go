@@ -63,17 +63,17 @@ func (log *Logger) Debug(args ...interface{}) {
 }
 
 func (log *Logger) Info(args ...interface{}) {
-	log.Logger.Debug(fmt.Sprint(args...))
+	log.Logger.Info(fmt.Sprint(args...))
 }
 
 func (log *Logger) Warn(args ...interface{}) {
-	log.Logger.Debug(fmt.Sprint(args...))
+	log.Logger.Warn(fmt.Sprint(args...))
 }
 
 func (log *Logger) Error(args ...interface{}) {
-	log.Logger.Debug(fmt.Sprint(args...))
+	log.Logger.Error(fmt.Sprint(args...))
 }
 
 func (log *Logger) Fatal(args ...interface{}) {
-	log.Logger.Debug(fmt.Sprint(args...))
+	log.Logger.Fatal(fmt.Sprint(args...))
 }

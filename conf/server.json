@@ -1,5 +1,9 @@
 {
   "HttpAddr":":11917",
+  "StatusHttpAddr":"127.0.0.1:8087",
   "ListMaxLayer": 32,
-  "ListLayerFactor": 0.4
+  "ListLayerFactor": 0.4,
+  "RDBTimeIntervals": 200,
+  "RDBModifyKeys": 2,
+  "RDBFileName": "/usr/local/var/rank-db/rank.rdb"
 }

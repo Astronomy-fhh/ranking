@@ -4,13 +4,13 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	config2 "ranking/config"
+	"ranking/config"
 	"ranking/log"
-	"ranking/server/core/server"
+	"ranking/server/core"
 )
 
 var (
-	conf  = flag.String("conf", "/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/conf/server.json", "config file path")
+	conf  = flag.String("conf", "/Users/huhu.fan/workspace/go/src/ranking/conf/server.json", "config file path")
 	logProd  = flag.Bool("logProd", false, "production log")
 )
 
@@ -30,13 +30,12 @@ func main()  {
 		os.Exit(1)
 	}
 
-	config, err := config2.NewServerConf(*conf)
+	err = config.InitServerConfig(*conf)
 	if err != nil {
 		fmt.Printf("get config err:%s",err.Error())
 		os.Exit(1)
 	}
 
-	server := server.NewRankServer()
-	server.SetConfig(config)
+	server := core.NewServer()
 	server.Run()
 }

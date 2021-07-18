@@ -18,17 +18,11 @@ type Client struct {
    Config *config.ClientConfig
 }
 
-func NewClient(config *config.ClientConfig)*Client {
+func NewClient()*Client {
 	client := &Client{}
 	client.Cmd = NewCmdApp()
-	client.InitConfig(config)
 	client.InitHandle()
 	return client
-}
-
-
-func (c *Client) InitConfig(config *config.ClientConfig)  {
-	c.Config = config
 }
 
 

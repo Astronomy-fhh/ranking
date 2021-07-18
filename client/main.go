@@ -24,13 +24,13 @@ func main()  {
 		os.Exit(1)
 	}
 
-	clientConfig, err := config.NewClientConf(confPath)
+	err = config.InitClientConfig(confPath)
 	if err != nil {
 		fmt.Printf("init config err:%s",err.Error())
 		os.Exit(1)
 	}
 
-	client := client.NewClient(clientConfig)
+	client := client.NewClient()
 	client.Run()
 
 }

@@ -1,7 +1,8 @@
 syntax = "proto3";
 
-package pb;
+package message;
 option go_package = "ranking/proto";
+
 
 service Rank {
   rpc ZAdd (ZAddReq) returns (ZAddResp){}
@@ -9,12 +10,14 @@ service Rank {
 
 }
 
+message Container{
+  map<string,uint64>data = 1;
+}
 
-
-message ServerConfig{
-  string HttpAddr = 1;
-  int32 ListMaxLayer = 2;
-  float ListLayerFactor =3;
+message RDB {
+  uint64 version = 2;
+  uint64 timestamp = 3;
+  map<string,Container> containers = 4;
 }
 
 message ZAddReq{
