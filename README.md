@@ -7,8 +7,8 @@
 5.gen_server_handle.sh，格式化，自定义修改
 
 协程退出 生成测试数据
-proto3的默认字段返回 zrank
+proto3的默认字段返回 optiona处理
 db操作封装到DB
 原子操作，比如dict和list的同步删除
-remrange 方法待优化
+remrange 方法待优化，bug
 错误处理

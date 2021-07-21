@@ -241,3 +241,21 @@
 {"L":"INFO","T":"2021-07-21 17:50:31","C":"client/client.go:57","M":"signal received: interrupt"}
 {"L":"INFO","T":"2021-07-21 17:55:17","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
 {"L":"INFO","T":"2021-07-21 17:59:00","C":"client/client.go:57","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-21 18:43:04","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-21 18:43:37","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = DeadlineExceeded desc = context deadline exceeded"}
+{"L":"INFO","T":"2021-07-21 18:48:44","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = DeadlineExceeded desc = context deadline exceeded"}
+{"L":"INFO","T":"2021-07-21 18:51:40","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = Unavailable desc = connection error: desc = \"transport: error while dialing: dial tcp 127.0.0.1:11917: connect: connection refused\""}
+{"L":"INFO","T":"2021-07-21 18:52:02","C":"client/client.go:57","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-21 18:52:05","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-21 18:52:25","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = DeadlineExceeded desc = context deadline exceeded"}
+{"L":"INFO","T":"2021-07-21 18:57:07","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-21 18:57:41","C":"client/client.go:57","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-21 18:57:45","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-21 18:58:13","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = DeadlineExceeded desc = context deadline exceeded"}
+{"L":"INFO","T":"2021-07-21 18:58:34","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = DeadlineExceeded desc = context deadline exceeded"}
+{"L":"INFO","T":"2021-07-21 19:09:28","C":"client/client.go:57","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-21 19:09:28","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = Unavailable desc = error reading from server: read tcp 127.0.0.1:61161->127.0.0.1:11917: use of closed network connection"}
+{"L":"INFO","T":"2021-07-21 19:44:05","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-21 19:44:25","C":"handle/clientHandle.go:33","M":"cmd err:rpc error: code = DeadlineExceeded desc = context deadline exceeded"}
+{"L":"INFO","T":"2021-07-21 19:48:08","C":"client/client.go:57","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-21 19:48:09","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}

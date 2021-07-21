@@ -178,11 +178,11 @@ func (db *DB) GetContainer(key string) *Container {
 }
 
 func (db *DB) GenTestData()  {
-	keyC := 100
-	keyL := 15
-	mC := 100
+	keyC := 1
+	keyL := 3
+	mC := 20
 	mL := 15
-	sL := 10
+	sL := 2
 
 	for i := 0; i < keyC; i++ {
 			key := util.GetRandomString(keyL)

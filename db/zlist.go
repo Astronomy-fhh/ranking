@@ -9,6 +9,8 @@ import (
 type zList interface {
 	Add(key string, score int64) *pb.Obj
 	Del(key string, score int64) bool
+	DelRangeByRank(start,end int64)[]string
+	DelRangeByScore(start,end int64)[]string
 	Update(key string, curScore, newScore int64) *pb.Obj
 	GetRangeByRank(start, end int64) []*pb.Obj
 	GetRevRangeByRank(start, end int64) []*pb.Obj
@@ -133,12 +135,67 @@ func (zkl *ZSkipList) Del(key string, score int64) bool {
 	}
 
 	op = op.Layer[0].ForwardNode
-	if op != nil && op.Obj.Score == score && op.Obj.Member == key {
-		zkl.delNode(op, needUpdateLayer)
-		return true
+	for op != nil && op.Obj.Score == score{
+		if op.Obj.Member == key  {
+			zkl.delNode(op, needUpdateLayer)
+			return true
+		}
+	}
+	return false
+}
+
+func (zkl *ZSkipList) DelRangeByRank(start,end int64)[]string {
+	needDelete := make([]string,0)
+	needUpdateLayer := make(map[int64]*Node)
+	rank := make([]int64, zkl.Layers)
+	compRank := start + 1
+
+	op := zkl.Header
+	for i := zkl.Layers - 1; i >= 0; i-- {
+		if i == zkl.Layers-1 {
+			rank[i] = 0
+		} else {
+			rank[i] = rank[i+1]
+		}
+
+		for op.Layer[i].ForwardNode != nil && (rank[i]+op.Layer[i].Span) < compRank {
+			rank[i] += op.Layer[i].Span
+			op = op.Layer[i].ForwardNode
+		}
+		needUpdateLayer[i] = op
 	}
 
-	return false
+	op = op.Layer[0].ForwardNode
+	idx := start
+	for (idx <= end || end == -1) && op != nil{
+		needDelete = append(needDelete,op.Obj.Member)
+		zkl.delNode(op, needUpdateLayer)
+		op = op.Layer[0].ForwardNode
+		idx ++
+	}
+	return needDelete
+}
+
+func (zkl *ZSkipList) DelRangeByScore(start,end int64)[]string {
+	needDelete := make([]string,0)
+	needUpdateLayer := make(map[int64]*Node)
+
+	op := zkl.Header
+	var i int64
+	for i = zkl.Layers - 1; i >= 0; i-- {
+		for op.Layer[i].ForwardNode != nil && op.Layer[i].ForwardNode.Obj.Score < start {
+			op = op.Layer[i].ForwardNode
+		}
+		needUpdateLayer[i] = op
+	}
+
+	op = op.Layer[0].ForwardNode
+	for op != nil && op.Obj.Score <= end{
+		needDelete = append(needDelete,op.Obj.Member)
+		zkl.delNode(op, needUpdateLayer)
+		op = op.Layer[0].ForwardNode
+	}
+	return needDelete
 }
 
 func (zkl *ZSkipList) Update(key string, curScore, newScore int64) *pb.Obj {

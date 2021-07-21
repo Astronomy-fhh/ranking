@@ -55,6 +55,7 @@ func (rs *Server) ListenSignal()  {
 	case s := <-chSignal:
 		log.Log.Infof("signal received: %v", s)
 		signal.Reset(syscall.SIGINT, syscall.SIGTERM)
+		db.Db.RDBSave()
 		os.Exit(0)
 	}
 }

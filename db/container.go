@@ -148,16 +148,10 @@ func (c *Container) GetLen() int64 {
 func (c *Container) DelRangeByRank(start, end int64) int64 {
 	c.Lock()
 	defer c.Unlock()
-	var ret int64
-	objs := c.Zsl.GetRangeByRank(start, end)
-	for _, obj := range objs {
-		score, ok := c.Dict[obj.Member]
-		if !ok {
-			continue
-		}
-		c.Zsl.Del(obj.Member, score)
-		delete(c.Dict, obj.Member)
-		ret++
+	members := c.Zsl.DelRangeByRank(start, end)
+    ret := int64(len(members))
+	for _, member := range members {
+		delete(c.Dict, member)
 	}
 	return ret
 }
@@ -165,16 +159,10 @@ func (c *Container) DelRangeByRank(start, end int64) int64 {
 func (c *Container) DelRangeByScore(start, end int64) int64 {
 	c.Lock()
 	defer c.Unlock()
-	var ret int64
-	objs := c.Zsl.GetRangeByScore(start, end)
-	for _, obj := range objs {
-		score, ok := c.Dict[obj.Member]
-		if !ok {
-			continue
-		}
-		c.Zsl.Del(obj.Member, score)
-		delete(c.Dict, obj.Member)
-		ret++
+	members := c.Zsl.DelRangeByScore(start, end)
+	ret := int64(len(members))
+	for _, member := range members {
+		delete(c.Dict, member)
 	}
 	return ret
 }
