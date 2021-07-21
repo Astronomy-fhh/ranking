@@ -8,9 +8,9 @@ import (
 	"math"
 	"math/rand"
 	"os"
-	"ranking/config"
 	"ranking/log"
 	pb "ranking/proto"
+	config2 "ranking/server/config"
 	"ranking/util"
 	"sync"
 	"syscall"
@@ -41,7 +41,7 @@ func InitDB() {
 }
 
 func (db *DB) RDBSaveLoop()  {
-	timeInterval := config.SConfig.RDBTimeIntervals
+	timeInterval := config2.SConfig.RDBTimeIntervals
 	log.Log.Infof("RDBSaveLoop:start:timeInterval:%v",timeInterval)
 
 	ticker := time.NewTicker(time.Duration(timeInterval) * time.Second)
@@ -86,7 +86,7 @@ func (db *DB) RDBSave()  {
 	log.Log.Debugf("RDBSave:size:%v",uint64(len(bytes)))
 
 	bytes = append(head,bytes...)
-	err = saveBytes(bytes, config.SConfig.RDBFileName)
+	err = saveBytes(bytes, config2.SConfig.RDBFileName)
 	if err != nil {
 		log.Log.Warnf("RDBSave:fail:%v",err.Error())
 		return
@@ -97,13 +97,13 @@ func (db *DB) RDBSave()  {
 func (db *DB) RDBLoad()error  {
 	log.Log.Info("RDBLoad:start...")
 
-	err := syscall.Access(config.SConfig.RDBFileName, syscall.F_OK)
+	err := syscall.Access(config2.SConfig.RDBFileName, syscall.F_OK)
 	if err != nil {
-		log.Log.Warnf("RDBLoad:not found file:%v",config.SConfig.RDBFileName)
+		log.Log.Warnf("RDBLoad:not found file:%v", config2.SConfig.RDBFileName)
 		return nil
 	}
 
-	f, err := os.OpenFile(config.SConfig.RDBFileName, os.O_RDONLY , os.ModePerm)
+	f, err := os.OpenFile(config2.SConfig.RDBFileName, os.O_RDONLY , os.ModePerm)
 	if err != nil {
 		return err
 	}

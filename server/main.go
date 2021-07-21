@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"ranking/config"
 	"ranking/log"
-	"ranking/server/core"
+	"ranking/server/config"
+	"ranking/server/servermain"
 )
 
 var (
@@ -36,6 +36,6 @@ func main()  {
 		os.Exit(1)
 	}
 
-	server := core.NewServer()
+	server := servermain.NewServer()
 	server.Run()
 }

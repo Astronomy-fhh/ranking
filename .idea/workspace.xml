@@ -22,13 +22,51 @@
     <list default="true" id="c21bee2f-7d41-40e4-9616-a278d8a90f1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/server.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf/server.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/container.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/container.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client" beforeDir="false" afterPath="$PROJECT_DIR$/client/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/rankctl/rankctl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/client/cmd.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/command/cmd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/clientHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/clientHandle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zAdd.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zAdd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zCard.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zCard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zCount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zCount.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zIncrby.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zIncrby.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRange.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRem.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRem.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRemRangeByRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRemRangeByRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRemRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRemRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRevRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRevRange.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zRevRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRevRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zrevRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zrevRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/config/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/zlist.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/zlist.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/error/error.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/log/rank.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/rank.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/core/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server" beforeDir="false" afterPath="$PROJECT_DIR$/server/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/all.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/serverHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/serverHandle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zAdd.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zAdd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zCard.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zCard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zCount.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zCount.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zIncrby.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zIncrby.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRange.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRem.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRem.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRemRangeByRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRemRangeByRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRemRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRemRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRevRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRevRange.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRevRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRevRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zRevRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRevRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/handle/zScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/servermain/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/servervisual/status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +119,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/server/core/handle" />
-      <recent name="$PROJECT_DIR$/server" />
-      <recent name="$PROJECT_DIR$/server/core" />
-      <recent name="$PROJECT_DIR$/server/core/server" />
-      <recent name="$PROJECT_DIR$/server/server" />
+      <recent name="$PROJECT_DIR$/rankctl/config" />
+      <recent name="$PROJECT_DIR$/rankctl" />
+      <recent name="$PROJECT_DIR$/rankctl/rankclimain" />
+      <recent name="$PROJECT_DIR$/rankctl/command" />
+      <recent name="$PROJECT_DIR$/server/config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/script" />
@@ -262,37 +300,37 @@
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/baseHandle.go</url>
+          <url>file://$PROJECT_DIR$/rankctl/handle/baseHandle.go</url>
           <line>9</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/zAdd.go</url>
+          <url>file://$PROJECT_DIR$/rankctl/handle/zAdd.go</url>
           <line>56</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/zAdd.go</url>
+          <url>file://$PROJECT_DIR$/rankctl/handle/zAdd.go</url>
           <line>21</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/zAdd.go</url>
+          <url>file://$PROJECT_DIR$/rankctl/handle/zAdd.go</url>
           <line>68</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/server/core/status.go</url>
+          <url>file://$PROJECT_DIR$/server/servervisual/status.go</url>
           <line>19</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/clientHandle.go</url>
+          <url>file://$PROJECT_DIR$/rankctl/handle/clientHandle.go</url>
           <line>32</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/server/core/handle/zRemRangeByRank.go</url>
+          <url>file://$PROJECT_DIR$/server/handle/zRemRangeByRank.go</url>
           <line>27</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>

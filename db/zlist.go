@@ -2,8 +2,8 @@ package db
 
 import (
 	"math/rand"
-	"ranking/config"
 	pb "ranking/proto"
+	config2 "ranking/server/config"
 )
 
 type zList interface {
@@ -32,10 +32,10 @@ func NewZSkipList() *ZSkipList {
 	zsl.Layers = 1
 	zsl.Len = 0
 	header := Node{}
-	var layer = make([]*LayerNode, config.SConfig.ListMaxLayer)
+	var layer = make([]*LayerNode, config2.SConfig.ListMaxLayer)
 
 	var i int64
-	for i = 0; i < config.SConfig.ListMaxLayer; i++ {
+	for i = 0; i < config2.SConfig.ListMaxLayer; i++ {
 		layer[i] = &LayerNode{Span: i}
 	}
 
@@ -48,7 +48,7 @@ func (zkl *ZSkipList) Add(key string, score int64) *pb.Obj {
 
 	op := zkl.Header
 	needUpdateLayer := make(map[int64]*Node)
-	rank := make([]int64, config.SConfig.ListMaxLayer)
+	rank := make([]int64, config2.SConfig.ListMaxLayer)
 
 	// to find a op node
 
@@ -416,11 +416,11 @@ func (zkl *ZSkipList) delNode(op *Node, needUpdateLayer map[int64]*Node) {
 
 func getRandLayer() int64 {
 	layers := 1
-	for rand.Float32() < config.SConfig.ListLayerFactor {
+	for rand.Float32() < config2.SConfig.ListLayerFactor {
 		layers++
 	}
-	if int64(layers) < config.SConfig.ListMaxLayer {
+	if int64(layers) < config2.SConfig.ListMaxLayer {
 		return int64(layers)
 	}
-	return config.SConfig.ListMaxLayer
+	return config2.SConfig.ListMaxLayer
 }
