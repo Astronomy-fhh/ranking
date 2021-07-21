@@ -23,9 +23,9 @@ func (s Status) printDbVals(w http.ResponseWriter,r *http.Request)  {
 	for key, vals := range all {
 		str += key + ":"+ strconv.FormatUint(uint64(len(vals)), 10) + "\n"
 		for _, val := range vals {
-			str += "\t" + val.Key + "\t" + strconv.FormatUint(val.Score, 10) + "\n"
+			str += "\t" + val.Member + "\t" + strconv.FormatInt(val.Score, 10) + "\n"
 		}
 		str += "\n"
 	}
-	w.Write([]byte(str))
+	_, _ = w.Write([]byte(str))
 }

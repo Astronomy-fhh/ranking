@@ -19,7 +19,19 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RankClient interface {
 	ZAdd(ctx context.Context, in *ZAddReq, opts ...grpc.CallOption) (*ZAddResp, error)
+	ZCard(ctx context.Context, in *ZCardReq, opts ...grpc.CallOption) (*ZCardResp, error)
+	ZCount(ctx context.Context, in *ZCountReq, opts ...grpc.CallOption) (*ZCountResp, error)
+	ZIncrBy(ctx context.Context, in *ZIncrByReq, opts ...grpc.CallOption) (*ZIncrByResp, error)
+	ZRange(ctx context.Context, in *ZRangeReq, opts ...grpc.CallOption) (*ZRangeResp, error)
+	ZRangeByScore(ctx context.Context, in *ZRangeByScoreReq, opts ...grpc.CallOption) (*ZRangeByScoreResp, error)
+	ZRank(ctx context.Context, in *ZRankReq, opts ...grpc.CallOption) (*ZRankResp, error)
 	ZRem(ctx context.Context, in *ZRemReq, opts ...grpc.CallOption) (*ZRemResp, error)
+	ZRemRangeByRank(ctx context.Context, in *ZRemRangeByRankReq, opts ...grpc.CallOption) (*ZRemRangeByRankResp, error)
+	ZRemRangeByScore(ctx context.Context, in *ZRemRangeByScoreReq, opts ...grpc.CallOption) (*ZRemRangeByScoreResp, error)
+	ZRevRange(ctx context.Context, in *ZRevRangeReq, opts ...grpc.CallOption) (*ZRevRangeResp, error)
+	ZRevRangeByScore(ctx context.Context, in *ZRevRangeByScoreReq, opts ...grpc.CallOption) (*ZRevRangeByScoreResp, error)
+	ZRevRank(ctx context.Context, in *ZRevRankReq, opts ...grpc.CallOption) (*ZRevRankResp, error)
+	ZScore(ctx context.Context, in *ZScoreReq, opts ...grpc.CallOption) (*ZScoreResp, error)
 }
 
 type rankClient struct {
@@ -39,9 +51,117 @@ func (c *rankClient) ZAdd(ctx context.Context, in *ZAddReq, opts ...grpc.CallOpt
 	return out, nil
 }
 
+func (c *rankClient) ZCard(ctx context.Context, in *ZCardReq, opts ...grpc.CallOption) (*ZCardResp, error) {
+	out := new(ZCardResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZCard", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZCount(ctx context.Context, in *ZCountReq, opts ...grpc.CallOption) (*ZCountResp, error) {
+	out := new(ZCountResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZIncrBy(ctx context.Context, in *ZIncrByReq, opts ...grpc.CallOption) (*ZIncrByResp, error) {
+	out := new(ZIncrByResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZIncrBy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRange(ctx context.Context, in *ZRangeReq, opts ...grpc.CallOption) (*ZRangeResp, error) {
+	out := new(ZRangeResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRange", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRangeByScore(ctx context.Context, in *ZRangeByScoreReq, opts ...grpc.CallOption) (*ZRangeByScoreResp, error) {
+	out := new(ZRangeByScoreResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRangeByScore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRank(ctx context.Context, in *ZRankReq, opts ...grpc.CallOption) (*ZRankResp, error) {
+	out := new(ZRankResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRank", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *rankClient) ZRem(ctx context.Context, in *ZRemReq, opts ...grpc.CallOption) (*ZRemResp, error) {
 	out := new(ZRemResp)
 	err := c.cc.Invoke(ctx, "/message.Rank/ZRem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRemRangeByRank(ctx context.Context, in *ZRemRangeByRankReq, opts ...grpc.CallOption) (*ZRemRangeByRankResp, error) {
+	out := new(ZRemRangeByRankResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRemRangeByRank", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRemRangeByScore(ctx context.Context, in *ZRemRangeByScoreReq, opts ...grpc.CallOption) (*ZRemRangeByScoreResp, error) {
+	out := new(ZRemRangeByScoreResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRemRangeByScore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRevRange(ctx context.Context, in *ZRevRangeReq, opts ...grpc.CallOption) (*ZRevRangeResp, error) {
+	out := new(ZRevRangeResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRevRange", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRevRangeByScore(ctx context.Context, in *ZRevRangeByScoreReq, opts ...grpc.CallOption) (*ZRevRangeByScoreResp, error) {
+	out := new(ZRevRangeByScoreResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRevRangeByScore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZRevRank(ctx context.Context, in *ZRevRankReq, opts ...grpc.CallOption) (*ZRevRankResp, error) {
+	out := new(ZRevRankResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZRevRank", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *rankClient) ZScore(ctx context.Context, in *ZScoreReq, opts ...grpc.CallOption) (*ZScoreResp, error) {
+	out := new(ZScoreResp)
+	err := c.cc.Invoke(ctx, "/message.Rank/ZScore", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +173,19 @@ func (c *rankClient) ZRem(ctx context.Context, in *ZRemReq, opts ...grpc.CallOpt
 // for forward compatibility
 type RankServer interface {
 	ZAdd(context.Context, *ZAddReq) (*ZAddResp, error)
+	ZCard(context.Context, *ZCardReq) (*ZCardResp, error)
+	ZCount(context.Context, *ZCountReq) (*ZCountResp, error)
+	ZIncrBy(context.Context, *ZIncrByReq) (*ZIncrByResp, error)
+	ZRange(context.Context, *ZRangeReq) (*ZRangeResp, error)
+	ZRangeByScore(context.Context, *ZRangeByScoreReq) (*ZRangeByScoreResp, error)
+	ZRank(context.Context, *ZRankReq) (*ZRankResp, error)
 	ZRem(context.Context, *ZRemReq) (*ZRemResp, error)
+	ZRemRangeByRank(context.Context, *ZRemRangeByRankReq) (*ZRemRangeByRankResp, error)
+	ZRemRangeByScore(context.Context, *ZRemRangeByScoreReq) (*ZRemRangeByScoreResp, error)
+	ZRevRange(context.Context, *ZRevRangeReq) (*ZRevRangeResp, error)
+	ZRevRangeByScore(context.Context, *ZRevRangeByScoreReq) (*ZRevRangeByScoreResp, error)
+	ZRevRank(context.Context, *ZRevRankReq) (*ZRevRankResp, error)
+	ZScore(context.Context, *ZScoreReq) (*ZScoreResp, error)
 	mustEmbedUnimplementedRankServer()
 }
 
@@ -64,8 +196,44 @@ type UnimplementedRankServer struct {
 func (UnimplementedRankServer) ZAdd(context.Context, *ZAddReq) (*ZAddResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ZAdd not implemented")
 }
+func (UnimplementedRankServer) ZCard(context.Context, *ZCardReq) (*ZCardResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZCard not implemented")
+}
+func (UnimplementedRankServer) ZCount(context.Context, *ZCountReq) (*ZCountResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZCount not implemented")
+}
+func (UnimplementedRankServer) ZIncrBy(context.Context, *ZIncrByReq) (*ZIncrByResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZIncrBy not implemented")
+}
+func (UnimplementedRankServer) ZRange(context.Context, *ZRangeReq) (*ZRangeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRange not implemented")
+}
+func (UnimplementedRankServer) ZRangeByScore(context.Context, *ZRangeByScoreReq) (*ZRangeByScoreResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRangeByScore not implemented")
+}
+func (UnimplementedRankServer) ZRank(context.Context, *ZRankReq) (*ZRankResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRank not implemented")
+}
 func (UnimplementedRankServer) ZRem(context.Context, *ZRemReq) (*ZRemResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ZRem not implemented")
+}
+func (UnimplementedRankServer) ZRemRangeByRank(context.Context, *ZRemRangeByRankReq) (*ZRemRangeByRankResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRemRangeByRank not implemented")
+}
+func (UnimplementedRankServer) ZRemRangeByScore(context.Context, *ZRemRangeByScoreReq) (*ZRemRangeByScoreResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRemRangeByScore not implemented")
+}
+func (UnimplementedRankServer) ZRevRange(context.Context, *ZRevRangeReq) (*ZRevRangeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRevRange not implemented")
+}
+func (UnimplementedRankServer) ZRevRangeByScore(context.Context, *ZRevRangeByScoreReq) (*ZRevRangeByScoreResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRevRangeByScore not implemented")
+}
+func (UnimplementedRankServer) ZRevRank(context.Context, *ZRevRankReq) (*ZRevRankResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZRevRank not implemented")
+}
+func (UnimplementedRankServer) ZScore(context.Context, *ZScoreReq) (*ZScoreResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ZScore not implemented")
 }
 func (UnimplementedRankServer) mustEmbedUnimplementedRankServer() {}
 
@@ -98,6 +266,114 @@ func _Rank_ZAdd_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Rank_ZCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZCardReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZCard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZCard",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZCard(ctx, req.(*ZCardReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZCountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZCount(ctx, req.(*ZCountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZIncrBy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZIncrByReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZIncrBy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZIncrBy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZIncrBy(ctx, req.(*ZIncrByReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZRange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRangeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRange",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRange(ctx, req.(*ZRangeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZRangeByScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRangeByScoreReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRangeByScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRangeByScore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRangeByScore(ctx, req.(*ZRangeByScoreReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRankReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRank",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRank(ctx, req.(*ZRankReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Rank_ZRem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ZRemReq)
 	if err := dec(in); err != nil {
@@ -116,6 +392,114 @@ func _Rank_ZRem_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Rank_ZRemRangeByRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRemRangeByRankReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRemRangeByRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRemRangeByRank",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRemRangeByRank(ctx, req.(*ZRemRangeByRankReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZRemRangeByScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRemRangeByScoreReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRemRangeByScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRemRangeByScore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRemRangeByScore(ctx, req.(*ZRemRangeByScoreReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZRevRange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRevRangeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRevRange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRevRange",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRevRange(ctx, req.(*ZRevRangeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZRevRangeByScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRevRangeByScoreReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRevRangeByScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRevRangeByScore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRevRangeByScore(ctx, req.(*ZRevRangeByScoreReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZRevRank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZRevRankReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZRevRank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZRevRank",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZRevRank(ctx, req.(*ZRevRankReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Rank_ZScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ZScoreReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RankServer).ZScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/message.Rank/ZScore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RankServer).ZScore(ctx, req.(*ZScoreReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Rank_ServiceDesc is the grpc.ServiceDesc for Rank service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -128,8 +512,56 @@ var Rank_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Rank_ZAdd_Handler,
 		},
 		{
+			MethodName: "ZCard",
+			Handler:    _Rank_ZCard_Handler,
+		},
+		{
+			MethodName: "ZCount",
+			Handler:    _Rank_ZCount_Handler,
+		},
+		{
+			MethodName: "ZIncrBy",
+			Handler:    _Rank_ZIncrBy_Handler,
+		},
+		{
+			MethodName: "ZRange",
+			Handler:    _Rank_ZRange_Handler,
+		},
+		{
+			MethodName: "ZRangeByScore",
+			Handler:    _Rank_ZRangeByScore_Handler,
+		},
+		{
+			MethodName: "ZRank",
+			Handler:    _Rank_ZRank_Handler,
+		},
+		{
 			MethodName: "ZRem",
 			Handler:    _Rank_ZRem_Handler,
+		},
+		{
+			MethodName: "ZRemRangeByRank",
+			Handler:    _Rank_ZRemRangeByRank_Handler,
+		},
+		{
+			MethodName: "ZRemRangeByScore",
+			Handler:    _Rank_ZRemRangeByScore_Handler,
+		},
+		{
+			MethodName: "ZRevRange",
+			Handler:    _Rank_ZRevRange_Handler,
+		},
+		{
+			MethodName: "ZRevRangeByScore",
+			Handler:    _Rank_ZRevRangeByScore_Handler,
+		},
+		{
+			MethodName: "ZRevRank",
+			Handler:    _Rank_ZRevRank_Handler,
+		},
+		{
+			MethodName: "ZScore",
+			Handler:    _Rank_ZScore_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

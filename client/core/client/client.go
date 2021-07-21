@@ -15,7 +15,6 @@ import (
 type Client struct {
    Cmd *Cmd
    Handle *handle.ClientHandle
-   Config *config.ClientConfig
 }
 
 func NewClient()*Client {
@@ -31,7 +30,7 @@ func (c *Client) InitHandle()  {
 	opts = append(opts, grpc.WithInsecure())
 	opts = append(opts, grpc.FailOnNonTempDialError(true))
 
-	grpcServerAddr := c.Config.HttpAddr
+	grpcServerAddr := config.CConfig.HttpAddr
 	opts = append(opts, grpc.WithBlock())
 	conn, err := grpc.Dial(grpcServerAddr, opts...)
 	if err != nil {

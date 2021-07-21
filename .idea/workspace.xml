@@ -21,25 +21,29 @@
   <component name="ChangeListManager">
     <list default="true" id="c21bee2f-7d41-40e4-9616-a278d8a90f1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client" beforeDir="false" afterPath="$PROJECT_DIR$/client/client" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/core/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/core/client/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/client/cmd.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/core/client/cmd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/clientHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/core/handle/clientHandle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/core/handle/zadd_handle.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/server.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf/server.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/conf.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/container/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/container/zlist.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/zlist.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/container/zset.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/container.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/log/log.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/container.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/container.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/zlist.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/zlist.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/rank.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/rank.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/proto/rpc.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/rpc.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proto/rpc_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/proto/rpc_grpc.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/core/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/server/serverData.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/server/serverHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/core/serverHandle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/rpc-gen.sh" beforeDir="false" afterPath="$PROJECT_DIR$/script/rpc-gen.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/core/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/serverHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/core/handle/serverHandle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/core/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/core/status.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/binary_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/binary_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server" beforeDir="false" afterPath="$PROJECT_DIR$/server/server" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +85,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/script" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -91,21 +95,22 @@
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/test" />
-      <recent name="$PROJECT_DIR$/config" />
-      <recent name="$PROJECT_DIR$/server" />
-      <recent name="$PROJECT_DIR$/conf" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/core/handle" />
       <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/server/core" />
       <recent name="$PROJECT_DIR$/server/core/server" />
       <recent name="$PROJECT_DIR$/server/server" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/script" />
+      <recent name="$PROJECT_DIR$/server/core/handle" />
       <recent name="$PROJECT_DIR$/client/core/handle" />
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestContext in ranking/test">
+  <component name="RunManager" selected="Go Build.go build ranking/client">
     <configuration name="go build ranking/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$" />
@@ -124,28 +129,6 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestBinary in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="ranking" />
-      <working_directory value="$PROJECT_DIR$/test" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="ranking/test" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestBinary\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestBinary2 in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="ranking" />
-      <working_directory value="$PROJECT_DIR$/test" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="ranking/test" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestBinary2\E$" />
-      <method v="2" />
-    </configuration>
     <configuration name="TestContext in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$/test" />
@@ -157,20 +140,42 @@
       <pattern value="^\QTestContext\E$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestExit in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="ranking/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestExit\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestPoint in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="ranking/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestPoint\E$" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Go Build.go build ranking/client" />
       <item itemvalue="Go Build.go build ranking/server" />
-      <item itemvalue="Go Test.TestBinary in ranking/test" />
-      <item itemvalue="Go Test.TestBinary2 in ranking/test" />
       <item itemvalue="Go Test.TestContext in ranking/test" />
+      <item itemvalue="Go Test.TestExit in ranking/test" />
+      <item itemvalue="Go Test.TestPoint in ranking/test" />
+      <item itemvalue="Go Build.go build ranking/client" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build ranking/client" />
+        <item itemvalue="Go Test.TestPoint in ranking/test" />
+        <item itemvalue="Go Test.TestExit in ranking/test" />
         <item itemvalue="Go Test.TestContext in ranking/test" />
         <item itemvalue="Go Build.go build ranking/server" />
-        <item itemvalue="Go Test.TestBinary2 in ranking/test" />
-        <item itemvalue="Go Test.TestBinary in ranking/test" />
-        <item itemvalue="Go Build.go build ranking/client" />
       </list>
     </recent_temporary>
   </component>
@@ -193,12 +198,62 @@
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
+  <component name="WindowStateProjectService">
+    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1626686036172">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626686036172" />
+    <state width="1038" height="460" key="GridCell.Tab.0.bottom" timestamp="1626855314355">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.0.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314355" />
+    <state width="1038" height="460" key="GridCell.Tab.0.center" timestamp="1626855314354">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.0.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314354" />
+    <state width="1038" height="460" key="GridCell.Tab.0.left" timestamp="1626855314353">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.0.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314353" />
+    <state width="1038" height="460" key="GridCell.Tab.0.right" timestamp="1626855314354">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.0.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314354" />
+    <state width="1038" height="460" key="GridCell.Tab.1.bottom" timestamp="1626855314356">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314356" />
+    <state width="1038" height="460" key="GridCell.Tab.1.center" timestamp="1626855314355">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314355" />
+    <state width="1038" height="460" key="GridCell.Tab.1.left" timestamp="1626855314355">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314355" />
+    <state width="1038" height="460" key="GridCell.Tab.1.right" timestamp="1626855314356">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="1038" height="460" key="GridCell.Tab.1.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626855314356" />
+    <state x="270" y="710" width="615" height="524" key="StructurePopup" timestamp="1626856654089">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="270" y="710" width="615" height="524" key="StructurePopup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626856654089" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1626851916273">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626851916273" />
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup" timestamp="1626690395815">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626690395815" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/db/zlist.go</url>
-          <line>197</line>
+          <line>204</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -227,17 +282,17 @@
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/zadd_handle.go</url>
+          <url>file://$PROJECT_DIR$/client/core/handle/zAdd.go</url>
           <line>56</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/zadd_handle.go</url>
+          <url>file://$PROJECT_DIR$/client/core/handle/zAdd.go</url>
           <line>21</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/client/core/handle/zadd_handle.go</url>
+          <url>file://$PROJECT_DIR$/client/core/handle/zAdd.go</url>
           <line>68</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
@@ -245,6 +300,11 @@
           <url>file://$PROJECT_DIR$/server/core/status.go</url>
           <line>19</line>
           <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/client/core/handle/clientHandle.go</url>
+          <line>32</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

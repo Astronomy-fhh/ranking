@@ -23,19 +23,58 @@ const (
 type Method int32
 
 const (
-	Method_ZADD Method = 0
-	Method_ZREM Method = 1
+	Method_MethodDefault    Method = 0
+	Method_ZAdd             Method = 1
+	Method_ZCard            Method = 2
+	Method_ZCount           Method = 3
+	Method_ZIncrby          Method = 4
+	Method_ZRange           Method = 5
+	Method_ZRangeByScore    Method = 6
+	Method_ZRank            Method = 7
+	Method_ZRem             Method = 8
+	Method_ZRemRangeByRank  Method = 9
+	Method_ZRemRangeByScore Method = 10
+	Method_ZRevRange        Method = 11
+	Method_ZRevRangeByScore Method = 12
+	Method_ZRevRank         Method = 13
+	Method_ZScore           Method = 14
 )
 
 // Enum value maps for Method.
 var (
 	Method_name = map[int32]string{
-		0: "ZADD",
-		1: "ZREM",
+		0:  "MethodDefault",
+		1:  "ZAdd",
+		2:  "ZCard",
+		3:  "ZCount",
+		4:  "ZIncrby",
+		5:  "ZRange",
+		6:  "ZRangeByScore",
+		7:  "ZRank",
+		8:  "ZRem",
+		9:  "ZRemRangeByRank",
+		10: "ZRemRangeByScore",
+		11: "ZRevRange",
+		12: "ZRevRangeByScore",
+		13: "ZRevRank",
+		14: "ZScore",
 	}
 	Method_value = map[string]int32{
-		"ZADD": 0,
-		"ZREM": 1,
+		"MethodDefault":    0,
+		"ZAdd":             1,
+		"ZCard":            2,
+		"ZCount":           3,
+		"ZIncrby":          4,
+		"ZRange":           5,
+		"ZRangeByScore":    6,
+		"ZRank":            7,
+		"ZRem":             8,
+		"ZRemRangeByRank":  9,
+		"ZRemRangeByScore": 10,
+		"ZRevRange":        11,
+		"ZRevRangeByScore": 12,
+		"ZRevRank":         13,
+		"ZScore":           14,
 	}
 )
 
@@ -66,12 +105,61 @@ func (Method) EnumDescriptor() ([]byte, []int) {
 	return file_proto_rpc_proto_rawDescGZIP(), []int{0}
 }
 
+type ErrorNo int32
+
+const (
+	ErrorNo_DEFAULT      ErrorNo = 0
+	ErrorNo_TOO_MANY_ADD ErrorNo = 1
+	ErrorNo_ARGS_TO_LONG ErrorNo = 2
+)
+
+// Enum value maps for ErrorNo.
+var (
+	ErrorNo_name = map[int32]string{
+		0: "DEFAULT",
+		1: "TOO_MANY_ADD",
+		2: "ARGS_TO_LONG",
+	}
+	ErrorNo_value = map[string]int32{
+		"DEFAULT":      0,
+		"TOO_MANY_ADD": 1,
+		"ARGS_TO_LONG": 2,
+	}
+)
+
+func (x ErrorNo) Enum() *ErrorNo {
+	p := new(ErrorNo)
+	*p = x
+	return p
+}
+
+func (x ErrorNo) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ErrorNo) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_rpc_proto_enumTypes[1].Descriptor()
+}
+
+func (ErrorNo) Type() protoreflect.EnumType {
+	return &file_proto_rpc_proto_enumTypes[1]
+}
+
+func (x ErrorNo) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ErrorNo.Descriptor instead.
+func (ErrorNo) EnumDescriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{1}
+}
+
 type Container struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Data map[string]uint64 `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	Data map[string]int64 `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
 }
 
 func (x *Container) Reset() {
@@ -106,7 +194,7 @@ func (*Container) Descriptor() ([]byte, []int) {
 	return file_proto_rpc_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Container) GetData() map[string]uint64 {
+func (x *Container) GetData() map[string]int64 {
 	if x != nil {
 		return x.Data
 	}
@@ -176,19 +264,74 @@ func (x *RDB) GetContainers() map[string]*Container {
 	return nil
 }
 
+type Obj struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Member string `protobuf:"bytes,1,opt,name=member,proto3" json:"member,omitempty"`
+	Score  int64  `protobuf:"varint,2,opt,name=score,proto3" json:"score,omitempty"`
+}
+
+func (x *Obj) Reset() {
+	*x = Obj{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Obj) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Obj) ProtoMessage() {}
+
+func (x *Obj) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Obj.ProtoReflect.Descriptor instead.
+func (*Obj) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Obj) GetMember() string {
+	if x != nil {
+		return x.Member
+	}
+	return ""
+}
+
+func (x *Obj) GetScore() int64 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
 type ZAddReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Key string            `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-	Val map[string]uint64 `protobuf:"bytes,2,rep,name=val,proto3" json:"val,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	Key  string           `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Vars map[string]int64 `protobuf:"bytes,2,rep,name=vars,proto3" json:"vars,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
 }
 
 func (x *ZAddReq) Reset() {
 	*x = ZAddReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_rpc_proto_msgTypes[2]
+		mi := &file_proto_rpc_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -201,7 +344,7 @@ func (x *ZAddReq) String() string {
 func (*ZAddReq) ProtoMessage() {}
 
 func (x *ZAddReq) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rpc_proto_msgTypes[2]
+	mi := &file_proto_rpc_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -214,7 +357,7 @@ func (x *ZAddReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZAddReq.ProtoReflect.Descriptor instead.
 func (*ZAddReq) Descriptor() ([]byte, []int) {
-	return file_proto_rpc_proto_rawDescGZIP(), []int{2}
+	return file_proto_rpc_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ZAddReq) GetKey() string {
@@ -224,9 +367,9 @@ func (x *ZAddReq) GetKey() string {
 	return ""
 }
 
-func (x *ZAddReq) GetVal() map[string]uint64 {
+func (x *ZAddReq) GetVars() map[string]int64 {
 	if x != nil {
-		return x.Val
+		return x.Vars
 	}
 	return nil
 }
@@ -236,14 +379,14 @@ type ZAddResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AddC    uint64 `protobuf:"varint,1,opt,name=addC,proto3" json:"addC,omitempty"`
-	UpdateC uint64 `protobuf:"varint,2,opt,name=updateC,proto3" json:"updateC,omitempty"`
+	AddC    *int64 `protobuf:"varint,2,opt,name=addC,proto3,oneof" json:"addC,omitempty"`
+	UpdateC *int64 `protobuf:"varint,3,opt,name=updateC,proto3,oneof" json:"updateC,omitempty"`
 }
 
 func (x *ZAddResp) Reset() {
 	*x = ZAddResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_rpc_proto_msgTypes[3]
+		mi := &file_proto_rpc_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -256,7 +399,7 @@ func (x *ZAddResp) String() string {
 func (*ZAddResp) ProtoMessage() {}
 
 func (x *ZAddResp) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rpc_proto_msgTypes[3]
+	mi := &file_proto_rpc_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,19 +412,655 @@ func (x *ZAddResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZAddResp.ProtoReflect.Descriptor instead.
 func (*ZAddResp) Descriptor() ([]byte, []int) {
-	return file_proto_rpc_proto_rawDescGZIP(), []int{3}
+	return file_proto_rpc_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ZAddResp) GetAddC() uint64 {
-	if x != nil {
-		return x.AddC
+func (x *ZAddResp) GetAddC() int64 {
+	if x != nil && x.AddC != nil {
+		return *x.AddC
 	}
 	return 0
 }
 
-func (x *ZAddResp) GetUpdateC() uint64 {
+func (x *ZAddResp) GetUpdateC() int64 {
+	if x != nil && x.UpdateC != nil {
+		return *x.UpdateC
+	}
+	return 0
+}
+
+type ZCardReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (x *ZCardReq) Reset() {
+	*x = ZCardReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZCardReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZCardReq) ProtoMessage() {}
+
+func (x *ZCardReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZCardReq.ProtoReflect.Descriptor instead.
+func (*ZCardReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ZCardReq) GetKey() string {
 	if x != nil {
-		return x.UpdateC
+		return x.Key
+	}
+	return ""
+}
+
+type ZCardResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ret *int64 `protobuf:"varint,1,opt,name=ret,proto3,oneof" json:"ret,omitempty"`
+}
+
+func (x *ZCardResp) Reset() {
+	*x = ZCardResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZCardResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZCardResp) ProtoMessage() {}
+
+func (x *ZCardResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZCardResp.ProtoReflect.Descriptor instead.
+func (*ZCardResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ZCardResp) GetRet() int64 {
+	if x != nil && x.Ret != nil {
+		return *x.Ret
+	}
+	return 0
+}
+
+type ZCountReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Start int64  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End   int64  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+}
+
+func (x *ZCountReq) Reset() {
+	*x = ZCountReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZCountReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZCountReq) ProtoMessage() {}
+
+func (x *ZCountReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZCountReq.ProtoReflect.Descriptor instead.
+func (*ZCountReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ZCountReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZCountReq) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *ZCountReq) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+type ZCountResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ret *int64 `protobuf:"varint,1,opt,name=ret,proto3,oneof" json:"ret,omitempty"`
+}
+
+func (x *ZCountResp) Reset() {
+	*x = ZCountResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZCountResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZCountResp) ProtoMessage() {}
+
+func (x *ZCountResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZCountResp.ProtoReflect.Descriptor instead.
+func (*ZCountResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ZCountResp) GetRet() int64 {
+	if x != nil && x.Ret != nil {
+		return *x.Ret
+	}
+	return 0
+}
+
+type ZIncrByReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key    string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Incr   int64  `protobuf:"varint,2,opt,name=incr,proto3" json:"incr,omitempty"`
+	Member string `protobuf:"bytes,3,opt,name=member,proto3" json:"member,omitempty"`
+}
+
+func (x *ZIncrByReq) Reset() {
+	*x = ZIncrByReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZIncrByReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZIncrByReq) ProtoMessage() {}
+
+func (x *ZIncrByReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZIncrByReq.ProtoReflect.Descriptor instead.
+func (*ZIncrByReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ZIncrByReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZIncrByReq) GetIncr() int64 {
+	if x != nil {
+		return x.Incr
+	}
+	return 0
+}
+
+func (x *ZIncrByReq) GetMember() string {
+	if x != nil {
+		return x.Member
+	}
+	return ""
+}
+
+type ZIncrByResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ret *int64 `protobuf:"varint,1,opt,name=ret,proto3,oneof" json:"ret,omitempty"`
+}
+
+func (x *ZIncrByResp) Reset() {
+	*x = ZIncrByResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZIncrByResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZIncrByResp) ProtoMessage() {}
+
+func (x *ZIncrByResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZIncrByResp.ProtoReflect.Descriptor instead.
+func (*ZIncrByResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ZIncrByResp) GetRet() int64 {
+	if x != nil && x.Ret != nil {
+		return *x.Ret
+	}
+	return 0
+}
+
+type ZRangeReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Start int64  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End   int64  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+}
+
+func (x *ZRangeReq) Reset() {
+	*x = ZRangeReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRangeReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRangeReq) ProtoMessage() {}
+
+func (x *ZRangeReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRangeReq.ProtoReflect.Descriptor instead.
+func (*ZRangeReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ZRangeReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRangeReq) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *ZRangeReq) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+type ZRangeResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Objs []*Obj `protobuf:"bytes,1,rep,name=objs,proto3" json:"objs,omitempty"`
+}
+
+func (x *ZRangeResp) Reset() {
+	*x = ZRangeResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRangeResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRangeResp) ProtoMessage() {}
+
+func (x *ZRangeResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRangeResp.ProtoReflect.Descriptor instead.
+func (*ZRangeResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ZRangeResp) GetObjs() []*Obj {
+	if x != nil {
+		return x.Objs
+	}
+	return nil
+}
+
+type ZRangeByScoreReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Start int64  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End   int64  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+}
+
+func (x *ZRangeByScoreReq) Reset() {
+	*x = ZRangeByScoreReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRangeByScoreReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRangeByScoreReq) ProtoMessage() {}
+
+func (x *ZRangeByScoreReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRangeByScoreReq.ProtoReflect.Descriptor instead.
+func (*ZRangeByScoreReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ZRangeByScoreReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRangeByScoreReq) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *ZRangeByScoreReq) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+type ZRangeByScoreResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Objs []*Obj `protobuf:"bytes,1,rep,name=objs,proto3" json:"objs,omitempty"`
+}
+
+func (x *ZRangeByScoreResp) Reset() {
+	*x = ZRangeByScoreResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRangeByScoreResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRangeByScoreResp) ProtoMessage() {}
+
+func (x *ZRangeByScoreResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRangeByScoreResp.ProtoReflect.Descriptor instead.
+func (*ZRangeByScoreResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ZRangeByScoreResp) GetObjs() []*Obj {
+	if x != nil {
+		return x.Objs
+	}
+	return nil
+}
+
+type ZRankReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key    string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Member string `protobuf:"bytes,2,opt,name=member,proto3" json:"member,omitempty"`
+}
+
+func (x *ZRankReq) Reset() {
+	*x = ZRankReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRankReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRankReq) ProtoMessage() {}
+
+func (x *ZRankReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRankReq.ProtoReflect.Descriptor instead.
+func (*ZRankReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ZRankReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRankReq) GetMember() string {
+	if x != nil {
+		return x.Member
+	}
+	return ""
+}
+
+type ZRankResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Rank *int64 `protobuf:"varint,1,opt,name=rank,proto3,oneof" json:"rank,omitempty"`
+}
+
+func (x *ZRankResp) Reset() {
+	*x = ZRankResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRankResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRankResp) ProtoMessage() {}
+
+func (x *ZRankResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRankResp.ProtoReflect.Descriptor instead.
+func (*ZRankResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ZRankResp) GetRank() int64 {
+	if x != nil && x.Rank != nil {
+		return *x.Rank
 	}
 	return 0
 }
@@ -291,14 +1070,14 @@ type ZRemReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-	Val string `protobuf:"bytes,2,opt,name=val,proto3" json:"val,omitempty"`
+	Key     string   `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Members []string `protobuf:"bytes,2,rep,name=members,proto3" json:"members,omitempty"`
 }
 
 func (x *ZRemReq) Reset() {
 	*x = ZRemReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_rpc_proto_msgTypes[4]
+		mi := &file_proto_rpc_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -311,7 +1090,7 @@ func (x *ZRemReq) String() string {
 func (*ZRemReq) ProtoMessage() {}
 
 func (x *ZRemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rpc_proto_msgTypes[4]
+	mi := &file_proto_rpc_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -324,7 +1103,7 @@ func (x *ZRemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZRemReq.ProtoReflect.Descriptor instead.
 func (*ZRemReq) Descriptor() ([]byte, []int) {
-	return file_proto_rpc_proto_rawDescGZIP(), []int{4}
+	return file_proto_rpc_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ZRemReq) GetKey() string {
@@ -334,11 +1113,11 @@ func (x *ZRemReq) GetKey() string {
 	return ""
 }
 
-func (x *ZRemReq) GetVal() string {
+func (x *ZRemReq) GetMembers() []string {
 	if x != nil {
-		return x.Val
+		return x.Members
 	}
-	return ""
+	return nil
 }
 
 type ZRemResp struct {
@@ -346,13 +1125,13 @@ type ZRemResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	Ret *int64 `protobuf:"varint,1,opt,name=ret,proto3,oneof" json:"ret,omitempty"`
 }
 
 func (x *ZRemResp) Reset() {
 	*x = ZRemResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_rpc_proto_msgTypes[5]
+		mi := &file_proto_rpc_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -365,7 +1144,7 @@ func (x *ZRemResp) String() string {
 func (*ZRemResp) ProtoMessage() {}
 
 func (x *ZRemResp) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_rpc_proto_msgTypes[5]
+	mi := &file_proto_rpc_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -378,12 +1157,656 @@ func (x *ZRemResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ZRemResp.ProtoReflect.Descriptor instead.
 func (*ZRemResp) Descriptor() ([]byte, []int) {
-	return file_proto_rpc_proto_rawDescGZIP(), []int{5}
+	return file_proto_rpc_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *ZRemResp) GetCount() int32 {
+func (x *ZRemResp) GetRet() int64 {
+	if x != nil && x.Ret != nil {
+		return *x.Ret
+	}
+	return 0
+}
+
+type ZRemRangeByRankReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Start int64  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End   int64  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+}
+
+func (x *ZRemRangeByRankReq) Reset() {
+	*x = ZRemRangeByRankReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRemRangeByRankReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRemRangeByRankReq) ProtoMessage() {}
+
+func (x *ZRemRangeByRankReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRemRangeByRankReq.ProtoReflect.Descriptor instead.
+func (*ZRemRangeByRankReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ZRemRangeByRankReq) GetKey() string {
 	if x != nil {
-		return x.Count
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRemRangeByRankReq) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *ZRemRangeByRankReq) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+type ZRemRangeByRankResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ret *int64 `protobuf:"varint,1,opt,name=ret,proto3,oneof" json:"ret,omitempty"`
+}
+
+func (x *ZRemRangeByRankResp) Reset() {
+	*x = ZRemRangeByRankResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRemRangeByRankResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRemRangeByRankResp) ProtoMessage() {}
+
+func (x *ZRemRangeByRankResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRemRangeByRankResp.ProtoReflect.Descriptor instead.
+func (*ZRemRangeByRankResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *ZRemRangeByRankResp) GetRet() int64 {
+	if x != nil && x.Ret != nil {
+		return *x.Ret
+	}
+	return 0
+}
+
+type ZRemRangeByScoreReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Start int64  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End   int64  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+}
+
+func (x *ZRemRangeByScoreReq) Reset() {
+	*x = ZRemRangeByScoreReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRemRangeByScoreReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRemRangeByScoreReq) ProtoMessage() {}
+
+func (x *ZRemRangeByScoreReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRemRangeByScoreReq.ProtoReflect.Descriptor instead.
+func (*ZRemRangeByScoreReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *ZRemRangeByScoreReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRemRangeByScoreReq) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *ZRemRangeByScoreReq) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+type ZRemRangeByScoreResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ret *int64 `protobuf:"varint,1,opt,name=ret,proto3,oneof" json:"ret,omitempty"`
+}
+
+func (x *ZRemRangeByScoreResp) Reset() {
+	*x = ZRemRangeByScoreResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRemRangeByScoreResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRemRangeByScoreResp) ProtoMessage() {}
+
+func (x *ZRemRangeByScoreResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRemRangeByScoreResp.ProtoReflect.Descriptor instead.
+func (*ZRemRangeByScoreResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ZRemRangeByScoreResp) GetRet() int64 {
+	if x != nil && x.Ret != nil {
+		return *x.Ret
+	}
+	return 0
+}
+
+type ZRevRangeReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Start int64  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End   int64  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+}
+
+func (x *ZRevRangeReq) Reset() {
+	*x = ZRevRangeReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRevRangeReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRevRangeReq) ProtoMessage() {}
+
+func (x *ZRevRangeReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRevRangeReq.ProtoReflect.Descriptor instead.
+func (*ZRevRangeReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ZRevRangeReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRevRangeReq) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *ZRevRangeReq) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+type ZRevRangeResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Objs []*Obj `protobuf:"bytes,1,rep,name=objs,proto3" json:"objs,omitempty"`
+}
+
+func (x *ZRevRangeResp) Reset() {
+	*x = ZRevRangeResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRevRangeResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRevRangeResp) ProtoMessage() {}
+
+func (x *ZRevRangeResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRevRangeResp.ProtoReflect.Descriptor instead.
+func (*ZRevRangeResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ZRevRangeResp) GetObjs() []*Obj {
+	if x != nil {
+		return x.Objs
+	}
+	return nil
+}
+
+type ZRevRangeByScoreReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Start int64  `protobuf:"varint,2,opt,name=start,proto3" json:"start,omitempty"`
+	End   int64  `protobuf:"varint,3,opt,name=end,proto3" json:"end,omitempty"`
+}
+
+func (x *ZRevRangeByScoreReq) Reset() {
+	*x = ZRevRangeByScoreReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRevRangeByScoreReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRevRangeByScoreReq) ProtoMessage() {}
+
+func (x *ZRevRangeByScoreReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRevRangeByScoreReq.ProtoReflect.Descriptor instead.
+func (*ZRevRangeByScoreReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ZRevRangeByScoreReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRevRangeByScoreReq) GetStart() int64 {
+	if x != nil {
+		return x.Start
+	}
+	return 0
+}
+
+func (x *ZRevRangeByScoreReq) GetEnd() int64 {
+	if x != nil {
+		return x.End
+	}
+	return 0
+}
+
+type ZRevRangeByScoreResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Objs []*Obj `protobuf:"bytes,1,rep,name=objs,proto3" json:"objs,omitempty"`
+}
+
+func (x *ZRevRangeByScoreResp) Reset() {
+	*x = ZRevRangeByScoreResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRevRangeByScoreResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRevRangeByScoreResp) ProtoMessage() {}
+
+func (x *ZRevRangeByScoreResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRevRangeByScoreResp.ProtoReflect.Descriptor instead.
+func (*ZRevRangeByScoreResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ZRevRangeByScoreResp) GetObjs() []*Obj {
+	if x != nil {
+		return x.Objs
+	}
+	return nil
+}
+
+type ZRevRankReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key    string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Member string `protobuf:"bytes,2,opt,name=member,proto3" json:"member,omitempty"`
+}
+
+func (x *ZRevRankReq) Reset() {
+	*x = ZRevRankReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRevRankReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRevRankReq) ProtoMessage() {}
+
+func (x *ZRevRankReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRevRankReq.ProtoReflect.Descriptor instead.
+func (*ZRevRankReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ZRevRankReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZRevRankReq) GetMember() string {
+	if x != nil {
+		return x.Member
+	}
+	return ""
+}
+
+type ZRevRankResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Rank *int64 `protobuf:"varint,1,opt,name=rank,proto3,oneof" json:"rank,omitempty"`
+}
+
+func (x *ZRevRankResp) Reset() {
+	*x = ZRevRankResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZRevRankResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZRevRankResp) ProtoMessage() {}
+
+func (x *ZRevRankResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZRevRankResp.ProtoReflect.Descriptor instead.
+func (*ZRevRankResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ZRevRankResp) GetRank() int64 {
+	if x != nil && x.Rank != nil {
+		return *x.Rank
+	}
+	return 0
+}
+
+type ZScoreReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key    string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Member string `protobuf:"bytes,2,opt,name=member,proto3" json:"member,omitempty"`
+}
+
+func (x *ZScoreReq) Reset() {
+	*x = ZScoreReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZScoreReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZScoreReq) ProtoMessage() {}
+
+func (x *ZScoreReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZScoreReq.ProtoReflect.Descriptor instead.
+func (*ZScoreReq) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ZScoreReq) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *ZScoreReq) GetMember() string {
+	if x != nil {
+		return x.Member
+	}
+	return ""
+}
+
+type ZScoreResp struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Score *int64 `protobuf:"varint,1,opt,name=score,proto3,oneof" json:"score,omitempty"`
+}
+
+func (x *ZScoreResp) Reset() {
+	*x = ZScoreResp{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_rpc_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ZScoreResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ZScoreResp) ProtoMessage() {}
+
+func (x *ZScoreResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_rpc_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ZScoreResp.ProtoReflect.Descriptor instead.
+func (*ZScoreResp) Descriptor() ([]byte, []int) {
+	return file_proto_rpc_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *ZScoreResp) GetScore() int64 {
+	if x != nil && x.Score != nil {
+		return *x.Score
 	}
 	return 0
 }
@@ -399,7 +1822,7 @@ var file_proto_rpc_proto_rawDesc = []byte{
 	0x74, 0x72, 0x79, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x37, 0x0a, 0x09, 0x44, 0x61, 0x74,
 	0x61, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02,
 	0x38, 0x01, 0x22, 0xce, 0x01, 0x0a, 0x03, 0x52, 0x44, 0x42, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65,
 	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x76, 0x65, 0x72,
 	0x73, 0x69, 0x6f, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
@@ -413,33 +1836,192 @@ var file_proto_rpc_proto_rawDesc = []byte{
 	0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x28, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x43,
 	0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a,
-	0x02, 0x38, 0x01, 0x22, 0x80, 0x01, 0x0a, 0x07, 0x5a, 0x41, 0x64, 0x64, 0x52, 0x65, 0x71, 0x12,
+	0x02, 0x38, 0x01, 0x22, 0x33, 0x0a, 0x03, 0x4f, 0x62, 0x6a, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x65,
+	0x6d, 0x62, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x22, 0x84, 0x01, 0x0a, 0x07, 0x5a, 0x41, 0x64,
+	0x64, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x2e, 0x0a, 0x04, 0x76, 0x61, 0x72, 0x73, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a,
+	0x41, 0x64, 0x64, 0x52, 0x65, 0x71, 0x2e, 0x56, 0x61, 0x72, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79,
+	0x52, 0x04, 0x76, 0x61, 0x72, 0x73, 0x1a, 0x37, 0x0a, 0x09, 0x56, 0x61, 0x72, 0x73, 0x45, 0x6e,
+	0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22,
+	0x57, 0x0a, 0x08, 0x5a, 0x41, 0x64, 0x64, 0x52, 0x65, 0x73, 0x70, 0x12, 0x17, 0x0a, 0x04, 0x61,
+	0x64, 0x64, 0x43, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52, 0x04, 0x61, 0x64, 0x64,
+	0x43, 0x88, 0x01, 0x01, 0x12, 0x1d, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x03, 0x48, 0x01, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43,
+	0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x61, 0x64, 0x64, 0x43, 0x42, 0x0a, 0x0a, 0x08,
+	0x5f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x22, 0x1c, 0x0a, 0x08, 0x5a, 0x43, 0x61, 0x72,
+	0x64, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x2a, 0x0a, 0x09, 0x5a, 0x43, 0x61, 0x72, 0x64, 0x52,
+	0x65, 0x73, 0x70, 0x12, 0x15, 0x0a, 0x03, 0x72, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x48, 0x00, 0x52, 0x03, 0x72, 0x65, 0x74, 0x88, 0x01, 0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x72,
+	0x65, 0x74, 0x22, 0x45, 0x0a, 0x09, 0x5a, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x12,
 	0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65,
-	0x79, 0x12, 0x2b, 0x0a, 0x03, 0x76, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19,
-	0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x41, 0x64, 0x64, 0x52, 0x65, 0x71,
-	0x2e, 0x56, 0x61, 0x6c, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x1a, 0x36,
-	0x0a, 0x08, 0x56, 0x61, 0x6c, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65,
-	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05,
-	0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x76, 0x61, 0x6c,
-	0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0x38, 0x0a, 0x08, 0x5a, 0x41, 0x64, 0x64, 0x52, 0x65,
-	0x73, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x61, 0x64, 0x64, 0x43, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x04, 0x61, 0x64, 0x64, 0x43, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x43, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43,
-	0x22, 0x2d, 0x0a, 0x07, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b,
-	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x10, 0x0a,
-	0x03, 0x76, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x76, 0x61, 0x6c, 0x22,
-	0x20, 0x0a, 0x08, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x12, 0x14, 0x0a, 0x05, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x2a, 0x1c, 0x0a, 0x06, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x12, 0x08, 0x0a, 0x04, 0x5a,
-	0x41, 0x44, 0x44, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x5a, 0x52, 0x45, 0x4d, 0x10, 0x01, 0x32,
-	0x64, 0x0a, 0x04, 0x52, 0x61, 0x6e, 0x6b, 0x12, 0x2d, 0x0a, 0x04, 0x5a, 0x41, 0x64, 0x64, 0x12,
-	0x10, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x41, 0x64, 0x64, 0x52, 0x65,
-	0x71, 0x1a, 0x11, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x41, 0x64, 0x64,
-	0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x2d, 0x0a, 0x04, 0x5a, 0x52, 0x65, 0x6d, 0x12, 0x10,
-	0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x65, 0x71,
-	0x1a, 0x11, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x6d, 0x52,
-	0x65, 0x73, 0x70, 0x22, 0x00, 0x42, 0x0f, 0x5a, 0x0d, 0x72, 0x61, 0x6e, 0x6b, 0x69, 0x6e, 0x67,
-	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x79, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x6e, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x65, 0x6e, 0x64, 0x22, 0x2b, 0x0a, 0x0a, 0x5a, 0x43, 0x6f,
+	0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x12, 0x15, 0x0a, 0x03, 0x72, 0x65, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52, 0x03, 0x72, 0x65, 0x74, 0x88, 0x01, 0x01, 0x42, 0x06,
+	0x0a, 0x04, 0x5f, 0x72, 0x65, 0x74, 0x22, 0x4a, 0x0a, 0x0a, 0x5a, 0x49, 0x6e, 0x63, 0x72, 0x42,
+	0x79, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x6e, 0x63, 0x72, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x69, 0x6e, 0x63, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x65,
+	0x6d, 0x62, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x22, 0x2c, 0x0a, 0x0b, 0x5a, 0x49, 0x6e, 0x63, 0x72, 0x42, 0x79, 0x52, 0x65, 0x73,
+	0x70, 0x12, 0x15, 0x0a, 0x03, 0x72, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00,
+	0x52, 0x03, 0x72, 0x65, 0x74, 0x88, 0x01, 0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x72, 0x65, 0x74,
+	0x22, 0x45, 0x0a, 0x09, 0x5a, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a,
+	0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12,
+	0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05,
+	0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x6e, 0x64, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x03, 0x65, 0x6e, 0x64, 0x22, 0x2e, 0x0a, 0x0a, 0x5a, 0x52, 0x61, 0x6e, 0x67,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x20, 0x0a, 0x04, 0x6f, 0x62, 0x6a, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x4f, 0x62,
+	0x6a, 0x52, 0x04, 0x6f, 0x62, 0x6a, 0x73, 0x22, 0x4c, 0x0a, 0x10, 0x5a, 0x52, 0x61, 0x6e, 0x67,
+	0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b,
+	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a,
+	0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x73, 0x74,
+	0x61, 0x72, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x6e, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x03, 0x65, 0x6e, 0x64, 0x22, 0x35, 0x0a, 0x11, 0x5a, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42,
+	0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x20, 0x0a, 0x04, 0x6f, 0x62,
+	0x6a, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x52, 0x04, 0x6f, 0x62, 0x6a, 0x73, 0x22, 0x34, 0x0a, 0x08,
+	0x5a, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x65,
+	0x6d, 0x62, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x22, 0x2d, 0x0a, 0x09, 0x5a, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x12,
+	0x17, 0x0a, 0x04, 0x72, 0x61, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52,
+	0x04, 0x72, 0x61, 0x6e, 0x6b, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x72, 0x61, 0x6e,
+	0x6b, 0x22, 0x35, 0x0a, 0x07, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03,
+	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x18,
+	0x0a, 0x07, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52,
+	0x07, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x22, 0x29, 0x0a, 0x08, 0x5a, 0x52, 0x65, 0x6d,
+	0x52, 0x65, 0x73, 0x70, 0x12, 0x15, 0x0a, 0x03, 0x72, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x48, 0x00, 0x52, 0x03, 0x72, 0x65, 0x74, 0x88, 0x01, 0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f,
+	0x72, 0x65, 0x74, 0x22, 0x4e, 0x0a, 0x12, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65,
+	0x42, 0x79, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x73,
+	0x74, 0x61, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x73, 0x74, 0x61, 0x72,
+	0x74, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x6e, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03,
+	0x65, 0x6e, 0x64, 0x22, 0x34, 0x0a, 0x13, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65,
+	0x42, 0x79, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x12, 0x15, 0x0a, 0x03, 0x72, 0x65,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52, 0x03, 0x72, 0x65, 0x74, 0x88, 0x01,
+	0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x72, 0x65, 0x74, 0x22, 0x4f, 0x0a, 0x13, 0x5a, 0x52, 0x65,
+	0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71,
+	0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b,
+	0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x6e, 0x64, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x65, 0x6e, 0x64, 0x22, 0x35, 0x0a, 0x14, 0x5a, 0x52,
+	0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x12, 0x15, 0x0a, 0x03, 0x72, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x48,
+	0x00, 0x52, 0x03, 0x72, 0x65, 0x74, 0x88, 0x01, 0x01, 0x42, 0x06, 0x0a, 0x04, 0x5f, 0x72, 0x65,
+	0x74, 0x22, 0x48, 0x0a, 0x0c, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65,
+	0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x65, 0x6e, 0x64,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x65, 0x6e, 0x64, 0x22, 0x31, 0x0a, 0x0d, 0x5a,
+	0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x20, 0x0a, 0x04,
+	0x6f, 0x62, 0x6a, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x6d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x52, 0x04, 0x6f, 0x62, 0x6a, 0x73, 0x22, 0x4f,
+	0x0a, 0x13, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f,
+	0x72, 0x65, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x10, 0x0a,
+	0x03, 0x65, 0x6e, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x65, 0x6e, 0x64, 0x22,
+	0x38, 0x0a, 0x14, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63,
+	0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x20, 0x0a, 0x04, 0x6f, 0x62, 0x6a, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e,
+	0x4f, 0x62, 0x6a, 0x52, 0x04, 0x6f, 0x62, 0x6a, 0x73, 0x22, 0x37, 0x0a, 0x0b, 0x5a, 0x52, 0x65,
+	0x76, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x65,
+	0x6d, 0x62, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x22, 0x30, 0x0a, 0x0c, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65,
+	0x73, 0x70, 0x12, 0x17, 0x0a, 0x04, 0x72, 0x61, 0x6e, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x48, 0x00, 0x52, 0x04, 0x72, 0x61, 0x6e, 0x6b, 0x88, 0x01, 0x01, 0x42, 0x07, 0x0a, 0x05, 0x5f,
+	0x72, 0x61, 0x6e, 0x6b, 0x22, 0x35, 0x0a, 0x09, 0x5a, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65,
+	0x71, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6b, 0x65, 0x79, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x22, 0x31, 0x0a, 0x0a, 0x5a,
+	0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x12, 0x19, 0x0a, 0x05, 0x73, 0x63, 0x6f,
+	0x72, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52, 0x05, 0x73, 0x63, 0x6f, 0x72,
+	0x65, 0x88, 0x01, 0x01, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x2a, 0xe7,
+	0x01, 0x0a, 0x06, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x12, 0x11, 0x0a, 0x0d, 0x4d, 0x65, 0x74,
+	0x68, 0x6f, 0x64, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04,
+	0x5a, 0x41, 0x64, 0x64, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x5a, 0x43, 0x61, 0x72, 0x64, 0x10,
+	0x02, 0x12, 0x0a, 0x0a, 0x06, 0x5a, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x10, 0x03, 0x12, 0x0b, 0x0a,
+	0x07, 0x5a, 0x49, 0x6e, 0x63, 0x72, 0x62, 0x79, 0x10, 0x04, 0x12, 0x0a, 0x0a, 0x06, 0x5a, 0x52,
+	0x61, 0x6e, 0x67, 0x65, 0x10, 0x05, 0x12, 0x11, 0x0a, 0x0d, 0x5a, 0x52, 0x61, 0x6e, 0x67, 0x65,
+	0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x10, 0x06, 0x12, 0x09, 0x0a, 0x05, 0x5a, 0x52, 0x61,
+	0x6e, 0x6b, 0x10, 0x07, 0x12, 0x08, 0x0a, 0x04, 0x5a, 0x52, 0x65, 0x6d, 0x10, 0x08, 0x12, 0x13,
+	0x0a, 0x0f, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x52, 0x61, 0x6e,
+	0x6b, 0x10, 0x09, 0x12, 0x14, 0x0a, 0x10, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65,
+	0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x10, 0x0a, 0x12, 0x0d, 0x0a, 0x09, 0x5a, 0x52, 0x65,
+	0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x10, 0x0b, 0x12, 0x14, 0x0a, 0x10, 0x5a, 0x52, 0x65, 0x76,
+	0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x10, 0x0c, 0x12, 0x0c,
+	0x0a, 0x08, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x6b, 0x10, 0x0d, 0x12, 0x0a, 0x0a, 0x06,
+	0x5a, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x10, 0x0e, 0x2a, 0x3a, 0x0a, 0x07, 0x45, 0x72, 0x72, 0x6f,
+	0x72, 0x4e, 0x6f, 0x12, 0x0b, 0x0a, 0x07, 0x44, 0x45, 0x46, 0x41, 0x55, 0x4c, 0x54, 0x10, 0x00,
+	0x12, 0x10, 0x0a, 0x0c, 0x54, 0x4f, 0x4f, 0x5f, 0x4d, 0x41, 0x4e, 0x59, 0x5f, 0x41, 0x44, 0x44,
+	0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x41, 0x52, 0x47, 0x53, 0x5f, 0x54, 0x4f, 0x5f, 0x4c, 0x4f,
+	0x4e, 0x47, 0x10, 0x02, 0x32, 0xd8, 0x06, 0x0a, 0x04, 0x52, 0x61, 0x6e, 0x6b, 0x12, 0x2d, 0x0a,
+	0x04, 0x5a, 0x41, 0x64, 0x64, 0x12, 0x10, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e,
+	0x5a, 0x41, 0x64, 0x64, 0x52, 0x65, 0x71, 0x1a, 0x11, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x2e, 0x5a, 0x41, 0x64, 0x64, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x30, 0x0a, 0x05,
+	0x5a, 0x43, 0x61, 0x72, 0x64, 0x12, 0x11, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e,
+	0x5a, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x71, 0x1a, 0x12, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x2e, 0x5a, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x33,
+	0x0a, 0x06, 0x5a, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x12, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x2e, 0x5a, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x1a, 0x13, 0x2e, 0x6d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x22, 0x00, 0x12, 0x36, 0x0a, 0x07, 0x5a, 0x49, 0x6e, 0x63, 0x72, 0x42, 0x79, 0x12, 0x13,
+	0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x49, 0x6e, 0x63, 0x72, 0x42, 0x79,
+	0x52, 0x65, 0x71, 0x1a, 0x14, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x49,
+	0x6e, 0x63, 0x72, 0x42, 0x79, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x33, 0x0a, 0x06, 0x5a,
+	0x52, 0x61, 0x6e, 0x67, 0x65, 0x12, 0x12, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e,
+	0x5a, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x13, 0x2e, 0x6d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00,
+	0x12, 0x48, 0x0a, 0x0d, 0x5a, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72,
+	0x65, 0x12, 0x19, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x61, 0x6e,
+	0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x1a, 0x2e, 0x6d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53,
+	0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x30, 0x0a, 0x05, 0x5a, 0x52,
+	0x61, 0x6e, 0x6b, 0x12, 0x11, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52,
+	0x61, 0x6e, 0x6b, 0x52, 0x65, 0x71, 0x1a, 0x12, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x2e, 0x5a, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x2d, 0x0a, 0x04,
+	0x5a, 0x52, 0x65, 0x6d, 0x12, 0x10, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a,
+	0x52, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x1a, 0x11, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x2e, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x4e, 0x0a, 0x0f, 0x5a,
+	0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x52, 0x61, 0x6e, 0x6b, 0x12, 0x1b,
+	0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e,
+	0x67, 0x65, 0x42, 0x79, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x71, 0x1a, 0x1c, 0x2e, 0x6d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42,
+	0x79, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x10, 0x5a,
+	0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x12,
+	0x1c, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61,
+	0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e,
+	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x6d, 0x52, 0x61, 0x6e, 0x67,
+	0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x3c,
+	0x0a, 0x09, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x12, 0x15, 0x2e, 0x6d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x52,
+	0x65, 0x71, 0x1a, 0x16, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65,
+	0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x10,
+	0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65,
+	0x12, 0x1c, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x76, 0x52,
+	0x61, 0x6e, 0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x1d,
+	0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e,
+	0x67, 0x65, 0x42, 0x79, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12,
+	0x39, 0x0a, 0x08, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x6b, 0x12, 0x14, 0x2e, 0x6d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x76, 0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65,
+	0x71, 0x1a, 0x15, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a, 0x52, 0x65, 0x76,
+	0x52, 0x61, 0x6e, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x12, 0x33, 0x0a, 0x06, 0x5a, 0x53,
+	0x63, 0x6f, 0x72, 0x65, 0x12, 0x12, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x5a,
+	0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x13, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x2e, 0x5a, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x22, 0x00, 0x42,
+	0x0f, 0x5a, 0x0d, 0x72, 0x61, 0x6e, 0x6b, 0x69, 0x6e, 0x67, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -454,34 +2036,88 @@ func file_proto_rpc_proto_rawDescGZIP() []byte {
 	return file_proto_rpc_proto_rawDescData
 }
 
-var file_proto_rpc_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_proto_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_proto_rpc_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_proto_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_proto_rpc_proto_goTypes = []interface{}{
-	(Method)(0),       // 0: message.method
-	(*Container)(nil), // 1: message.Container
-	(*RDB)(nil),       // 2: message.RDB
-	(*ZAddReq)(nil),   // 3: message.ZAddReq
-	(*ZAddResp)(nil),  // 4: message.ZAddResp
-	(*ZRemReq)(nil),   // 5: message.ZRemReq
-	(*ZRemResp)(nil),  // 6: message.ZRemResp
-	nil,               // 7: message.Container.DataEntry
-	nil,               // 8: message.RDB.ContainersEntry
-	nil,               // 9: message.ZAddReq.ValEntry
+	(Method)(0),                  // 0: message.method
+	(ErrorNo)(0),                 // 1: message.ErrorNo
+	(*Container)(nil),            // 2: message.Container
+	(*RDB)(nil),                  // 3: message.RDB
+	(*Obj)(nil),                  // 4: message.Obj
+	(*ZAddReq)(nil),              // 5: message.ZAddReq
+	(*ZAddResp)(nil),             // 6: message.ZAddResp
+	(*ZCardReq)(nil),             // 7: message.ZCardReq
+	(*ZCardResp)(nil),            // 8: message.ZCardResp
+	(*ZCountReq)(nil),            // 9: message.ZCountReq
+	(*ZCountResp)(nil),           // 10: message.ZCountResp
+	(*ZIncrByReq)(nil),           // 11: message.ZIncrByReq
+	(*ZIncrByResp)(nil),          // 12: message.ZIncrByResp
+	(*ZRangeReq)(nil),            // 13: message.ZRangeReq
+	(*ZRangeResp)(nil),           // 14: message.ZRangeResp
+	(*ZRangeByScoreReq)(nil),     // 15: message.ZRangeByScoreReq
+	(*ZRangeByScoreResp)(nil),    // 16: message.ZRangeByScoreResp
+	(*ZRankReq)(nil),             // 17: message.ZRankReq
+	(*ZRankResp)(nil),            // 18: message.ZRankResp
+	(*ZRemReq)(nil),              // 19: message.ZRemReq
+	(*ZRemResp)(nil),             // 20: message.ZRemResp
+	(*ZRemRangeByRankReq)(nil),   // 21: message.ZRemRangeByRankReq
+	(*ZRemRangeByRankResp)(nil),  // 22: message.ZRemRangeByRankResp
+	(*ZRemRangeByScoreReq)(nil),  // 23: message.ZRemRangeByScoreReq
+	(*ZRemRangeByScoreResp)(nil), // 24: message.ZRemRangeByScoreResp
+	(*ZRevRangeReq)(nil),         // 25: message.ZRevRangeReq
+	(*ZRevRangeResp)(nil),        // 26: message.ZRevRangeResp
+	(*ZRevRangeByScoreReq)(nil),  // 27: message.ZRevRangeByScoreReq
+	(*ZRevRangeByScoreResp)(nil), // 28: message.ZRevRangeByScoreResp
+	(*ZRevRankReq)(nil),          // 29: message.ZRevRankReq
+	(*ZRevRankResp)(nil),         // 30: message.ZRevRankResp
+	(*ZScoreReq)(nil),            // 31: message.ZScoreReq
+	(*ZScoreResp)(nil),           // 32: message.ZScoreResp
+	nil,                          // 33: message.Container.DataEntry
+	nil,                          // 34: message.RDB.ContainersEntry
+	nil,                          // 35: message.ZAddReq.VarsEntry
 }
 var file_proto_rpc_proto_depIdxs = []int32{
-	7, // 0: message.Container.data:type_name -> message.Container.DataEntry
-	8, // 1: message.RDB.containers:type_name -> message.RDB.ContainersEntry
-	9, // 2: message.ZAddReq.val:type_name -> message.ZAddReq.ValEntry
-	1, // 3: message.RDB.ContainersEntry.value:type_name -> message.Container
-	3, // 4: message.Rank.ZAdd:input_type -> message.ZAddReq
-	5, // 5: message.Rank.ZRem:input_type -> message.ZRemReq
-	4, // 6: message.Rank.ZAdd:output_type -> message.ZAddResp
-	6, // 7: message.Rank.ZRem:output_type -> message.ZRemResp
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	33, // 0: message.Container.data:type_name -> message.Container.DataEntry
+	34, // 1: message.RDB.containers:type_name -> message.RDB.ContainersEntry
+	35, // 2: message.ZAddReq.vars:type_name -> message.ZAddReq.VarsEntry
+	4,  // 3: message.ZRangeResp.objs:type_name -> message.Obj
+	4,  // 4: message.ZRangeByScoreResp.objs:type_name -> message.Obj
+	4,  // 5: message.ZRevRangeResp.objs:type_name -> message.Obj
+	4,  // 6: message.ZRevRangeByScoreResp.objs:type_name -> message.Obj
+	2,  // 7: message.RDB.ContainersEntry.value:type_name -> message.Container
+	5,  // 8: message.Rank.ZAdd:input_type -> message.ZAddReq
+	7,  // 9: message.Rank.ZCard:input_type -> message.ZCardReq
+	9,  // 10: message.Rank.ZCount:input_type -> message.ZCountReq
+	11, // 11: message.Rank.ZIncrBy:input_type -> message.ZIncrByReq
+	13, // 12: message.Rank.ZRange:input_type -> message.ZRangeReq
+	15, // 13: message.Rank.ZRangeByScore:input_type -> message.ZRangeByScoreReq
+	17, // 14: message.Rank.ZRank:input_type -> message.ZRankReq
+	19, // 15: message.Rank.ZRem:input_type -> message.ZRemReq
+	21, // 16: message.Rank.ZRemRangeByRank:input_type -> message.ZRemRangeByRankReq
+	23, // 17: message.Rank.ZRemRangeByScore:input_type -> message.ZRemRangeByScoreReq
+	25, // 18: message.Rank.ZRevRange:input_type -> message.ZRevRangeReq
+	27, // 19: message.Rank.ZRevRangeByScore:input_type -> message.ZRevRangeByScoreReq
+	29, // 20: message.Rank.ZRevRank:input_type -> message.ZRevRankReq
+	31, // 21: message.Rank.ZScore:input_type -> message.ZScoreReq
+	6,  // 22: message.Rank.ZAdd:output_type -> message.ZAddResp
+	8,  // 23: message.Rank.ZCard:output_type -> message.ZCardResp
+	10, // 24: message.Rank.ZCount:output_type -> message.ZCountResp
+	12, // 25: message.Rank.ZIncrBy:output_type -> message.ZIncrByResp
+	14, // 26: message.Rank.ZRange:output_type -> message.ZRangeResp
+	16, // 27: message.Rank.ZRangeByScore:output_type -> message.ZRangeByScoreResp
+	18, // 28: message.Rank.ZRank:output_type -> message.ZRankResp
+	20, // 29: message.Rank.ZRem:output_type -> message.ZRemResp
+	22, // 30: message.Rank.ZRemRangeByRank:output_type -> message.ZRemRangeByRankResp
+	24, // 31: message.Rank.ZRemRangeByScore:output_type -> message.ZRemRangeByScoreResp
+	26, // 32: message.Rank.ZRevRange:output_type -> message.ZRevRangeResp
+	28, // 33: message.Rank.ZRevRangeByScore:output_type -> message.ZRevRangeByScoreResp
+	30, // 34: message.Rank.ZRevRank:output_type -> message.ZRevRankResp
+	32, // 35: message.Rank.ZScore:output_type -> message.ZScoreResp
+	22, // [22:36] is the sub-list for method output_type
+	8,  // [8:22] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_proto_rpc_proto_init() }
@@ -515,7 +2151,7 @@ func file_proto_rpc_proto_init() {
 			}
 		}
 		file_proto_rpc_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ZAddReq); i {
+			switch v := v.(*Obj); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -527,7 +2163,7 @@ func file_proto_rpc_proto_init() {
 			}
 		}
 		file_proto_rpc_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ZAddResp); i {
+			switch v := v.(*ZAddReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -539,7 +2175,7 @@ func file_proto_rpc_proto_init() {
 			}
 		}
 		file_proto_rpc_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ZRemReq); i {
+			switch v := v.(*ZAddResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -551,6 +2187,162 @@ func file_proto_rpc_proto_init() {
 			}
 		}
 		file_proto_rpc_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZCardReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZCardResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZCountReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZCountResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZIncrByReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZIncrByResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRangeReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRangeResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRangeByScoreReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRangeByScoreResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRankReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRankResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRemReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ZRemResp); i {
 			case 0:
 				return &v.state
@@ -562,14 +2354,168 @@ func file_proto_rpc_proto_init() {
 				return nil
 			}
 		}
+		file_proto_rpc_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRemRangeByRankReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRemRangeByRankResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRemRangeByScoreReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRemRangeByScoreResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRevRangeReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRevRangeResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRevRangeByScoreReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRevRangeByScoreResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRevRankReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZRevRankResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZScoreReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_rpc_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ZScoreResp); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
+	file_proto_rpc_proto_msgTypes[4].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[6].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[8].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[10].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[16].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[18].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[20].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[22].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[28].OneofWrappers = []interface{}{}
+	file_proto_rpc_proto_msgTypes[30].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_rpc_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   9,
+			NumEnums:      2,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

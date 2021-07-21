@@ -7,7 +7,7 @@ import (
 )
 
 
-var clientConf *ClientConfig
+var CConfig *ClientConfig
 
 type ClientConfig struct {
 	HttpAddr        string
@@ -27,7 +27,7 @@ func InitClientConfig(fileName string)error  {
 		return err
 	}
 	log.Log.Infof("configFromFile:%v", config)
-	clientConf = config
+	CConfig = config
 	return nil
 }
 

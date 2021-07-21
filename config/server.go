@@ -12,11 +12,12 @@ var SConfig *ServerConfig
 type ServerConfig struct {
 	HttpAddr        string
 	StatusHttpAddr string
-	ListMaxLayer    int32
+	ListMaxLayer    int64
 	ListLayerFactor float32
 	RDBTimeIntervals int64
 	RDBModifyKeys int64
 	RDBFileName string
+	SingleZAddLimit int64
 }
 
 

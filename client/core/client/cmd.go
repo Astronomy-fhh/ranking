@@ -7,7 +7,6 @@ import (
 	"github.com/urfave/cli/v2"
 	"os"
 	"ranking/client/core/handle"
-	pb "ranking/proto"
 	"regexp"
 	"strings"
 )
@@ -43,21 +42,129 @@ func (c *Cmd) InitCommends()  {
 			},
 		},
 		{
-			Name: "ZADD",
+			Name: "zadd",
 			Aliases: []string{"ZADD"},
 			Usage: "ZADD key score member [score member ...]",
 			Action: func(context *cli.Context) error {
-				err := handle.HandOut(pb.Method_ZADD, c.CmdAppArgs)
+				err := handle.CmdHandle(handle.ZAdd(),c.CmdAppArgs)
 				return err
 			},
 		},
 		{
-			Name: "qqq",
-			Aliases: []string{"rc"},
-			Usage: "rank-cli",
+			Name: "zcard",
+			Aliases: []string{"ZCARD"},
+			Usage: "ZCARD key ",
 			Action: func(context *cli.Context) error {
-				fmt.Println("aaaa!!!")
-				return nil
+				err := handle.CmdHandle(handle.ZCard(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zcount",
+			Aliases: []string{"ZCOUNT"},
+			Usage: "ZCOUNT key min max ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZCount(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zincrby",
+			Aliases: []string{"ZINCRBY"},
+			Usage: "ZINCRBY key incr member ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZIncrBy(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zrange",
+			Aliases: []string{"ZRANGE"},
+			Usage: "zrange key start stop ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRange(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zrangebyscore",
+			Aliases: []string{"ZRANGEBYSCORE"},
+			Usage: "zrangebyscore key start stop ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRangeByScore(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zrank",
+			Aliases: []string{"ZRANK"},
+			Usage: "zrank key member ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRank(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zrem",
+			Aliases: []string{"ZREM"},
+			Usage: "zrem key member [member ...] ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRem(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zremrangebyrank",
+			Aliases: []string{"ZREMRANGEBYRANK"},
+			Usage: "zremrangebyrank key start stop ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRemRangeByRank(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zremrangebyscore",
+			Aliases: []string{"ZREMRANGEBYSCORE"},
+			Usage: "zremrangebyscore key start stop ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRemRangeByScore(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zrevrange",
+			Aliases: []string{"ZRANGE"},
+			Usage: "zrevrange key start stop ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRevRange(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zrevrangebyscore",
+			Aliases: []string{"ZRANGEBYSCORE"},
+			Usage: "zrevrangebyscore key start stop ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRevRangeByScore(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zrevrank",
+			Aliases: []string{"ZREVRANK"},
+			Usage: "zrevrank key start stop ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZRevRank(),c.CmdAppArgs)
+				return err
+			},
+		},
+		{
+			Name: "zscore",
+			Aliases: []string{"ZSCORE"},
+			Usage: "zscore key member ",
+			Action: func(context *cli.Context) error {
+				err := handle.CmdHandle(handle.ZScore(),c.CmdAppArgs)
+				return err
 			},
 		},
 	}
@@ -81,7 +188,7 @@ func (c *Cmd) RunCmd(connInfo string)  {
 
 		command := c.CmdApp.Command(args[0])
 		if command == nil {
-			RedPrint("ERR unknown command\n")
+			RedPrint("err: unknown command" + args[0] + "\n")
 			continue
 		}
 		c.CmdAppArgs = args

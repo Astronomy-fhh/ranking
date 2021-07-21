@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	conf  = flag.String("conf", "/Users/huhu.fan/workspace/go/src/ranking/conf/server.json", "config file path")
+	conf  = flag.String("conf", "/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/conf/server.json", "config file path")
 	logProd  = flag.Bool("logProd", false, "production log")
 )
 

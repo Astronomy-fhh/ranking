@@ -6,44 +6,181 @@ option go_package = "ranking/proto";
 
 service Rank {
   rpc ZAdd (ZAddReq) returns (ZAddResp){}
+  rpc ZCard (ZCardReq) returns (ZCardResp){}
+  rpc ZCount (ZCountReq) returns (ZCountResp){}
+  rpc ZIncrBy (ZIncrByReq) returns (ZIncrByResp){}
+  rpc ZRange (ZRangeReq) returns (ZRangeResp){}
+  rpc ZRangeByScore (ZRangeByScoreReq) returns (ZRangeByScoreResp){}
+  rpc ZRank (ZRankReq) returns (ZRankResp){}
   rpc ZRem (ZRemReq) returns (ZRemResp){}
-
+  rpc ZRemRangeByRank (ZRemRangeByRankReq) returns (ZRemRangeByRankResp){}
+  rpc ZRemRangeByScore (ZRemRangeByScoreReq) returns (ZRemRangeByScoreResp){}
+  rpc ZRevRange (ZRevRangeReq) returns (ZRevRangeResp){}
+  rpc ZRevRangeByScore (ZRevRangeByScoreReq) returns (ZRevRangeByScoreResp){}
+  rpc ZRevRank (ZRevRankReq) returns (ZRevRankResp){}
+  rpc ZScore (ZScoreReq) returns (ZScoreResp){}
 }
 
 message Container{
-  map<string,uint64>data = 1;
+  map<string, int64>data = 1;
 }
 
 message RDB {
   uint64 version = 2;
   uint64 timestamp = 3;
-  map<string,Container> containers = 4;
+  map<string, Container> containers = 4;
+}
+message Obj{
+  string member = 1;
+  int64 score = 2;
 }
 
 message ZAddReq{
   string key = 1;
-  map<string,uint64>val = 2;
+  map<string, int64>vars = 2;
+}
+message ZAddResp{
+  optional int64 addC = 2;
+  optional int64 updateC = 3;
 }
 
-message ZAddResp{
-  uint64 addC = 1;
-  uint64 updateC = 2;
+message ZCardReq{
+  string key = 1;
+}
+message ZCardResp{
+  optional int64 ret = 1;
+}
+
+message ZCountReq{
+  string key = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+message ZCountResp{
+  optional int64 ret = 1;
+}
+
+message ZIncrByReq{
+  string key = 1;
+  int64 incr = 2;
+  string member = 3;
+}
+message ZIncrByResp{
+  optional int64 ret = 1;
+}
+
+message ZRangeReq{
+  string key = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+message ZRangeResp{
+  repeated Obj objs = 1;
+}
+
+message ZRangeByScoreReq{
+  string key = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+message ZRangeByScoreResp{
+  repeated Obj objs = 1;
+}
+
+message ZRankReq{
+  string key = 1;
+  string member = 2;
+}
+message ZRankResp{
+  optional int64 rank = 1;
 }
 
 message ZRemReq{
   string key = 1;
-  string val = 2;
+  repeated string members = 2;
 }
 
 message ZRemResp{
-  int32 count = 1;
+  optional int64 ret = 1;
 }
+
+message ZRemRangeByRankReq{
+  string key = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+message ZRemRangeByRankResp{
+  optional int64 ret = 1;
+}
+
+message ZRemRangeByScoreReq{
+  string key = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+message ZRemRangeByScoreResp{
+  optional int64 ret = 1;
+}
+
+message ZRevRangeReq{
+  string key = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+message ZRevRangeResp{
+  repeated Obj objs = 1;
+}
+
+message ZRevRangeByScoreReq{
+  string key = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+message ZRevRangeByScoreResp{
+  repeated Obj objs = 1;
+}
+
+message ZRevRankReq{
+  string key = 1;
+  string member = 2;
+}
+message ZRevRankResp{
+  optional int64 rank = 1;
+}
+
+message ZScoreReq{
+  string key = 1;
+  string member = 2;
+}
+message ZScoreResp{
+  optional int64 score = 1;
+}
+
 
 
 
 enum method {
-  ZADD = 0;
-  ZREM = 1;
+  MethodDefault = 0;
+  ZAdd = 1;
+  ZCard = 2;
+  ZCount = 3;
+  ZIncrby = 4;
+  ZRange = 5;
+  ZRangeByScore = 6;
+  ZRank = 7;
+  ZRem = 8;
+  ZRemRangeByRank = 9;
+  ZRemRangeByScore = 10;
+  ZRevRange = 11;
+  ZRevRangeByScore= 12;
+  ZRevRank = 13;
+  ZScore = 14;
+}
+
+enum ErrorNo{
+  DEFAULT = 0;
+  TOO_MANY_ADD = 1;
+  ARGS_TO_LONG = 2;
 }
 
 

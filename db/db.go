@@ -23,7 +23,7 @@ type DB struct {
 	version uint64
 	initTime uint64
 	containers map[string]*Container
-	sync.Mutex
+	sync.RWMutex
 }
 
 func InitDB() {
@@ -31,13 +31,13 @@ func InitDB() {
 		containers: make(map[string]*Container),
 	}
 
-	//err := Db.RDBLoad()
-	//if err != nil {
-	//	log.Log.Fatalf("RDBLoad:fail:%v",err.Error())
-	//}
+	err := Db.RDBLoad()
+	if err != nil {
+		log.Log.Fatalf("RDBLoad:fail:%v",err.Error())
+	}
 
-	Db.GenTestData()
-	//go Db.RDBSaveLoop()
+	//Db.GenTestData()
+	go Db.RDBSaveLoop()
 }
 
 func (db *DB) RDBSaveLoop()  {
@@ -167,32 +167,168 @@ func (db *DB) GetOrInitContainer(key string) *Container {
 	return db.containers[key]
 }
 
+func (db *DB) GetContainer(key string) *Container {
+	db.RLock()
+	defer db.RUnlock()
+	_, ok := db.containers[key]
+	if !ok {
+		return nil
+	}
+	return db.containers[key]
+}
+
 func (db *DB) GenTestData()  {
-	keyC := 1000
+	keyC := 100
 	keyL := 15
-	mC := 10000
+	mC := 100
 	mL := 15
 	sL := 10
 
 	for i := 0; i < keyC; i++ {
 			key := util.GetRandomString(keyL)
 			container := db.GetOrInitContainer(key)
-			val := make(map[string]uint64,mC)
+			val := make(map[string]int64,mC)
 			for j := 0; j < mC; j++ {
 				member := util.GetRandomString(mL)
 				score := rand.Int63n(int64(math.Pow(10, float64(sL))))
-				val[member] = uint64(score)
+				val[member] = score
 			}
 			a, u := container.Add(val)
 			log.Log.Infof("GenTestData:key:%d:%s,addC:%d,updateC:%d", i,key,a,u)
 	}
 }
 
-func (db *DB) AllObjs()map[string][]*Obj  {
-	payload := make(map[string][]*Obj)
+func (db *DB) AllObjs()map[string][]*pb.Obj  {
+	payload := make(map[string][]*pb.Obj)
 	for key, container := range db.containers {
 		ranks := container.GetRangeByRank(0, -1)
 		payload[key] = ranks
 	}
 	return payload
 }
+
+func (db *DB) ZRem(key string, members []string)int64  {
+	var ret int64
+	c := db.GetContainer(key)
+	if c == nil {
+		return ret
+	}
+	return c.DelMembers(members)
+}
+
+func (db *DB) ZRemRangeByRank(key string,start,end int64)int64 {
+	var ret int64
+	c := db.GetContainer(key)
+	if c == nil {
+		return ret
+	}
+	return c.DelRangeByRank(start,end)
+}
+
+func (db *DB) ZRemRangeByScore(key string, start int64, end int64)int64 {
+	var ret int64
+	c := db.GetContainer(key)
+	if c == nil {
+		return ret
+	}
+	return c.DelRangeByScore(start,end)
+}
+
+func (db *DB) ZRevRange(key string, start int64, end int64)[]*pb.Obj {
+	c := db.GetContainer(key)
+	if c == nil {
+		ret := make([]*pb.Obj,0)
+		return ret
+	}
+	objs := c.GetRevRangeByRank(start, end)
+	return objs
+}
+
+func (db *DB) ZRevRangeByScore(key string, start int64, end int64)[]*pb.Obj {
+	c := db.GetContainer(key)
+	if c == nil {
+		res := make([]*pb.Obj,0)
+		return res
+	}
+	objs := c.GetRevRangeByScore(start, end)
+	return objs
+}
+
+func (db *DB) ZRevRank(key string, member string)(int64,bool) {
+	var ret int64
+	c := db.GetContainer(key)
+	if c == nil {
+		return ret,false
+	}
+	return c.GetRevRank(member)
+}
+
+func (db *DB) ZScore(key string, member string)(int64,bool) {
+	var ret int64
+	c := db.GetContainer(key)
+	if c == nil {
+		return ret,false
+	}
+	return c.GetScore(member)
+}
+
+func (db *DB) ZCard(key string)(int64,bool) {
+	var ret int64
+	c := db.GetContainer(key)
+	if c == nil {
+		return ret,false
+	}
+	c.RLock()
+	defer c.RUnlock()
+	return c.Size(),true
+}
+
+func (db *DB) ZAdd(key string, vars map[string]int64)(int64,int64) {
+	c := db.GetOrInitContainer(key)
+	return c.Add(vars)
+}
+
+func (db *DB) ZCount(key string,start,end int64)(int64,bool)  {
+	var ret int64
+	c := db.GetContainer(key)
+	if c == nil {
+		return ret,false
+	}else {
+		return c.GetCountByRangeScore(start,end),true
+	}
+}
+
+func (db *DB) ZIncrBy(key string, incr int64, member string)int64 {
+	container := db.GetOrInitContainer(key)
+	return container.Inceby(incr,member)
+}
+
+func (db *DB) ZRange(key string, start int64, end int64)[]*pb.Obj {
+	ret := make([]*pb.Obj,0)
+	c := db.GetContainer(key)
+	if c != nil {
+		ret = c.GetRangeByRank(start, end)
+	}
+	return ret
+}
+
+func (db *DB) ZRangeByScore(key string, start int64, end int64)[]*pb.Obj {
+	ret := make([]*pb.Obj,0)
+	c := db.GetContainer(key)
+	if c != nil {
+		ret = c.GetRangeByScore(start, end)
+	}
+	return ret
+}
+
+func (db *DB) ZRank(key string, member string)(int64,bool) {
+	c := db.GetContainer(key)
+	if c != nil {
+		return c.GetRank(member)
+	}
+	return 0,false
+}
+
+
+
+
