@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -39,7 +40,7 @@ func (h *ZAddHandle) Validate()error  {
 
 func (h *ZAddHandle) Execute()error  {
 	add, update := db.Db.ZAdd(h.req.Key, h.req.Vars)
-	h.resp = &pb.ZAddResp{AddC: &add,UpdateC: &update}
+	h.resp = &pb.ZAddResp{AddC: wrapperspb.Int64(add),UpdateC: wrapperspb.Int64(update)}
 	log.Log.Debugf("serverHandle:ZAdd:resp:%v",h.resp)
 	return nil
 }

@@ -26,3 +26,5 @@ RDB load/save 编码优化
 _ "net/http/pprof"
 go tool pprof http://localhost:8087/debug/pprof/heap
 pprof -http 127.0.0.1:9090 http://127.0.0.1:8087/debug/pprof/heap
+
+# load testing

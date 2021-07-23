@@ -37,7 +37,7 @@ func InitDB() {
 	if err != nil {
 		log.Log.Fatalf("RDBLoad:fail:%v", err.Error())
 	}
-	Db.GenTestData()
+	//Db.GenTestData()
 	go Db.RDBSaveLoop()
 }
 

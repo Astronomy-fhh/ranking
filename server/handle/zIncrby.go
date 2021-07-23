@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -27,7 +28,7 @@ func (h *ZIncrByHandle) Execute() error {
 
 	ret := db.Db.ZIncrBy(h.req.Key,h.req.Incr,h.req.Member)
 	h.resp = &pb.ZIncrByResp{
-		Ret: &ret,
+		Ret: wrapperspb.Int64(ret),
 	}
 	log.Log.Debugf("serverHandle:ZIncrBy:resp:%v", h.resp)
 	return nil

@@ -55,6 +55,6 @@ func (h *ZAddHandle) Execute() error {
 	return nil
 }
 func (h *ZAddHandle) Print() error {
-	fmt.Println(h.Resp.String())
+	fmt.Printf("add:%d,update:%d\n",h.Resp.AddC.Value,h.Resp.UpdateC.Value)
 	return nil
 }

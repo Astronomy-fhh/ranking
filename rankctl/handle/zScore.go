@@ -48,7 +48,7 @@ func (h *ZScoreHandle) Print() error {
 	if h.Resp.Score == nil {
 		fmt.Println("nil")
 	}else{
-		fmt.Println(h.Resp.String())
+		fmt.Println(h.Resp.Score.Value)
 	}
 	return nil
 }

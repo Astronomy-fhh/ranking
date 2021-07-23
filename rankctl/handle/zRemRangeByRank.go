@@ -55,6 +55,6 @@ func (h *ZRemRangeByRankHandle) Execute() error {
 }
 
 func (h *ZRemRangeByRankHandle) Print() error {
-	fmt.Println(h.Resp.String())
+	fmt.Println(h.Resp.Ret.Value)
 	return nil
 }

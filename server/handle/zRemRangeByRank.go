@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -27,7 +28,7 @@ func (h *ZRemRangeByRankHandle) Execute() error {
 
 	ret := db.Db.ZRemRangeByRank(h.req.Key, h.req.Start, h.req.End)
 	h.resp = &pb.ZRemRangeByRankResp{
-		Ret: &ret,
+		Ret: wrapperspb.Int64(ret),
 	}
 	log.Log.Debugf("serverHandle:ZRemRangeByRank:resp:%v", h.resp)
 	return nil

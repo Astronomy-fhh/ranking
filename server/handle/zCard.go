@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -31,7 +32,7 @@ func (h *ZCardHandle) Execute()error  {
 	resp := &pb.ZCardResp{}
 	card, has := db.Db.ZCard(h.req.Key)
 	if has {
-		resp.Ret = &card
+		resp.Ret = wrapperspb.Int64(card)
 	}
 	h.resp = resp
 	log.Log.Debugf("serverHandle:ZCard:resp:%v",resp)

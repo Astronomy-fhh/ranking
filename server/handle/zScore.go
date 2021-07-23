@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -28,7 +29,7 @@ func (h *ZScoreHandle) Execute() error {
 	resp := &pb.ZScoreResp{}
 	score, has := db.Db.ZScore(h.req.Key, h.req.Member)
 	if has {
-		resp.Score = &score
+		resp.Score = wrapperspb.Int64(score)
 	}
 	h.resp = resp
 	log.Log.Debugf("serverHandle:ZScore:resp:%v", h.resp)

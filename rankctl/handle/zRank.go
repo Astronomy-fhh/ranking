@@ -49,7 +49,7 @@ func (h *ZRankHandle) Print() error {
 	if h.Resp.Rank == nil {
 		fmt.Println("nil")
 	}else{
-		fmt.Println(h.Resp.String())
+		fmt.Println(h.Resp.Rank.Value)
 	}
 	return nil
 }

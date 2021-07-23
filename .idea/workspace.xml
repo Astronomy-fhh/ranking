@@ -24,13 +24,34 @@
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/rankctl" beforeDir="false" afterPath="$PROJECT_DIR$/bin/rankctl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/server" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/rank.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/rank.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/servermain/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/servermain/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/context_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/context_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/proto/rpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proto/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/rpc.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zAdd.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zAdd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zCard.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zCard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zCount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zCount.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zIncrby.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zIncrby.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zRem.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRem.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zRemRangeByRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRemRangeByRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zRemRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRemRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zRevRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRevRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rankctl/handle/zScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/serverHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/serverHandle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zAdd.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zAdd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zCard.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zCard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zCount.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zCount.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zIncrby.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zIncrby.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zRem.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRem.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zRemRangeByRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRemRangeByRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zRemRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRemRangeByScore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zRevRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRevRank.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/handle/zScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zScore.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +118,7 @@
       <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestContext in ranking/test (1)">
+  <component name="RunManager" selected="Go Build.go build ranking/test/stress">
     <configuration name="go build ranking/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$" />
@@ -107,12 +128,30 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="go build ranking/rankctl" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/rankctl/main.go" />
+      <package value="ranking/rankctl" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build ranking/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/server/main.go" />
       <package value="ranking/server" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build ranking/test/stress" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ranking" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/test/stress/main.go" />
+      <package value="ranking/test/stress" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
@@ -127,42 +166,20 @@
       <pattern value="^\QTestContext\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestExit in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="ranking" />
-      <working_directory value="$PROJECT_DIR$/test" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="ranking/test" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestExit\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestPoint in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="ranking" />
-      <working_directory value="$PROJECT_DIR$/test" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="ranking/test" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <pattern value="^\QTestPoint\E$" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Go Build.go build ranking/server" />
-      <item itemvalue="Go Test.TestExit in ranking/test" />
-      <item itemvalue="Go Test.TestPoint in ranking/test" />
       <item itemvalue="Go Build.go build ranking/client" />
       <item itemvalue="Go Test.TestContext in ranking/test (1)" />
+      <item itemvalue="Go Build.go build ranking/rankctl" />
+      <item itemvalue="Go Build.go build ranking/test/stress" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build ranking/test/stress" />
+        <item itemvalue="Go Build.go build ranking/rankctl" />
         <item itemvalue="Go Test.TestContext in ranking/test (1)" />
         <item itemvalue="Go Build.go build ranking/server" />
         <item itemvalue="Go Build.go build ranking/client" />
-        <item itemvalue="Go Test.TestPoint in ranking/test" />
-        <item itemvalue="Go Test.TestExit in ranking/test" />
       </list>
     </recent_temporary>
   </component>
@@ -186,42 +203,42 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1626686036172">
+    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1627043630581">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626686036172" />
-    <state width="1038" height="696" key="GridCell.Tab.0.bottom" timestamp="1626955816232">
+    <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627043630581" />
+    <state width="1038" height="696" key="GridCell.Tab.0.bottom" timestamp="1627044490784">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="696" key="GridCell.Tab.0.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816232" />
-    <state width="1038" height="696" key="GridCell.Tab.0.center" timestamp="1626955816231">
+    <state width="1038" height="696" key="GridCell.Tab.0.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627044490784" />
+    <state width="1038" height="696" key="GridCell.Tab.0.center" timestamp="1627044490783">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="696" key="GridCell.Tab.0.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816231" />
-    <state width="1038" height="696" key="GridCell.Tab.0.left" timestamp="1626955816231">
+    <state width="1038" height="696" key="GridCell.Tab.0.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627044490783" />
+    <state width="1038" height="696" key="GridCell.Tab.0.left" timestamp="1627044490783">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="696" key="GridCell.Tab.0.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816231" />
-    <state width="1038" height="696" key="GridCell.Tab.0.right" timestamp="1626955816232">
+    <state width="1038" height="696" key="GridCell.Tab.0.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627044490783" />
+    <state width="1038" height="696" key="GridCell.Tab.0.right" timestamp="1627044490783">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="696" key="GridCell.Tab.0.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816232" />
-    <state width="1038" height="522" key="GridCell.Tab.1.bottom" timestamp="1626868072504">
+    <state width="1038" height="696" key="GridCell.Tab.0.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627044490783" />
+    <state width="1038" height="522" key="GridCell.Tab.1.bottom" timestamp="1627039194808">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.1.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072504" />
-    <state width="1038" height="522" key="GridCell.Tab.1.center" timestamp="1626868072503">
+    <state width="1038" height="522" key="GridCell.Tab.1.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627039194808" />
+    <state width="1038" height="522" key="GridCell.Tab.1.center" timestamp="1627039194808">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.1.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072503" />
-    <state width="1038" height="522" key="GridCell.Tab.1.left" timestamp="1626868072503">
+    <state width="1038" height="522" key="GridCell.Tab.1.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627039194808" />
+    <state width="1038" height="522" key="GridCell.Tab.1.left" timestamp="1627039194807">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.1.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072503" />
-    <state width="1038" height="522" key="GridCell.Tab.1.right" timestamp="1626868072503">
+    <state width="1038" height="522" key="GridCell.Tab.1.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627039194807" />
+    <state width="1038" height="522" key="GridCell.Tab.1.right" timestamp="1627039194808">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.1.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072503" />
+    <state width="1038" height="522" key="GridCell.Tab.1.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627039194808" />
     <state x="270" y="710" width="615" height="524" key="StructurePopup" timestamp="1627007287951">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
@@ -230,10 +247,14 @@
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
     <state width="500" height="445" key="SwitcherDM/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626851916273" />
-    <state width="282" height="419" key="documentation.popup.size" timestamp="1627007230085">
+    <state width="282" height="419" key="documentation.popup.size" timestamp="1627044357500">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="282" height="419" key="documentation.popup.size/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627007230085" />
+    <state width="282" height="419" key="documentation.popup.size/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627044357500" />
+    <state x="241" y="726" width="598" height="490" key="find.popup" timestamp="1627036702860">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="241" y="726" width="598" height="490" key="find.popup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627036702860" />
     <state x="205" y="468" width="670" height="676" key="search.everywhere.popup" timestamp="1627007099911">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
@@ -306,6 +327,11 @@
           <url>file://$PROJECT_DIR$/test/context_test.go</url>
           <line>7</line>
           <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/server/handle/zAdd.go</url>
+          <line>40</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

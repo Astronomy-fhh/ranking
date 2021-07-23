@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -28,7 +29,7 @@ func (h *ZCountHandle) Execute() error {
 	}
 	count, has := db.Db.ZCount(h.req.Key, h.req.Start, h.req.End)
 	if has {
-		resp.Ret = &count
+		resp.Ret = wrapperspb.Int64(count)
 	}
 	h.resp = resp
 	log.Log.Debugf("serverHandle:ZCount:resp:%v", h.resp)

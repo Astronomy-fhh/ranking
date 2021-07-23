@@ -51,7 +51,7 @@ func (h *ZCardHandle) Print() error {
 	if h.Resp.Ret == nil {
 		fmt.Println("nil")
 	}else{
-		fmt.Println(h.Resp.String())
+		fmt.Println(h.Resp.Ret.Value)
 	}
 	return nil
 }

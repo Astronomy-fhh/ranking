@@ -270,3 +270,24 @@
 {"L":"FATAL","T":"2021-07-22 10:21:13","C":"rankctl/rankctl.go:39","M":"err:connection error: desc = \"transport: error while dialing: dial tcp 127.0.0.1:11917: connect: connection refused\"","S":"ranking/rankctl/rankctl.(*Client).InitHandle\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/rankctl/rankctl/rankctl.go:39\nranking/rankctl/rankctl.NewClient\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/rankctl/rankctl/rankctl.go:24\nmain.main\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/rankctl/main.go:33\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203"}
 {"L":"INFO","T":"2021-07-22 10:21:48","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
 {"L":"INFO","T":"2021-07-22 12:14:22","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 18:59:28","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:00:46","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:01:25","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:02:41","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:02:44","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:02:57","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:03:00","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:03:48","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:04:03","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:05:48","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:06:01","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:10:03","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:17:07","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:17:23","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:17:57","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:19:14","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:24:25","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:24:27","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:29:35","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-23 19:29:37","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-23 19:40:07","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}

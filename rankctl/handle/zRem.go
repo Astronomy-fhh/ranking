@@ -44,6 +44,6 @@ func (h *ZRemHandle) Execute() error {
 	return nil
 }
 func (h *ZRemHandle) Print() error {
-	fmt.Println(h.Resp.String())
+	fmt.Println(h.Resp.Ret.Value)
 	return nil
 }

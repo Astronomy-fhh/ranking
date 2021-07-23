@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -27,7 +28,7 @@ func (h *ZRemHandle) Execute() error {
 
 	ret := db.Db.ZRem(h.req.Key, h.req.Members)
 	h.resp = &pb.ZRemResp{
-		Ret: &ret,
+		Ret: wrapperspb.Int64(ret),
 	}
 	log.Log.Debugf("serverHandle:ZRem:resp:%v", h.resp)
 	return nil

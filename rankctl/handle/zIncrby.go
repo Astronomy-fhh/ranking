@@ -52,6 +52,6 @@ func (h *ZIncrByHandle) Execute() error {
 	return nil
 }
 func (h *ZIncrByHandle) Print() error {
-	fmt.Println(h.Resp.String())
+	fmt.Println(h.Resp.Ret.Value)
 	return nil
 }

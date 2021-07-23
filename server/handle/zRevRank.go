@@ -2,6 +2,7 @@ package handle
 
 import (
 	"context"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"ranking/db"
 	"ranking/log"
 	pb "ranking/proto"
@@ -28,7 +29,7 @@ func (h *ZRevRankHandle) Execute() error {
 	resp := &pb.ZRevRankResp{}
 	rank, has := db.Db.ZRevRank(h.req.Key, h.req.Member)
 	if has {
-		resp.Rank = &rank
+		resp.Rank = wrapperspb.Int64(rank)
 	}
 	h.resp = resp
 	log.Log.Debugf("serverHandle:ZRevRank:resp:%v", h.resp)

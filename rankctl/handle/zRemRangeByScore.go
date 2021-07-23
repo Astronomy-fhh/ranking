@@ -53,6 +53,6 @@ func (h *ZRemRangeByScoreHandle) Execute() error {
 	return nil
 }
 func (h *ZRemRangeByScoreHandle) Print() error {
-	fmt.Println(h.Resp.String())
+	fmt.Println(h.Resp.Ret.Value)
 	return nil
 }

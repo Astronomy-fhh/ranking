@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package message;
 option go_package = "ranking/proto";
+import "google/protobuf/wrappers.proto";
+
 
 
 service Rank {
@@ -40,15 +42,15 @@ message ZAddReq{
   map<string, int64>vars = 2;
 }
 message ZAddResp{
-  optional int64 addC = 2;
-  optional int64 updateC = 3;
+  google.protobuf.Int64Value addC = 1;
+  google.protobuf.Int64Value updateC = 2;
 }
 
 message ZCardReq{
   string key = 1;
 }
 message ZCardResp{
-  optional int64 ret = 1;
+  google.protobuf.Int64Value ret = 1;
 }
 
 message ZCountReq{
@@ -57,7 +59,7 @@ message ZCountReq{
   int64 end = 3;
 }
 message ZCountResp{
-  optional int64 ret = 1;
+  google.protobuf.Int64Value ret = 1;
 }
 
 message ZIncrByReq{
@@ -66,7 +68,7 @@ message ZIncrByReq{
   string member = 3;
 }
 message ZIncrByResp{
-  optional int64 ret = 1;
+  google.protobuf.Int64Value ret = 1;
 }
 
 message ZRangeReq{
@@ -92,7 +94,7 @@ message ZRankReq{
   string member = 2;
 }
 message ZRankResp{
-  optional int64 rank = 1;
+  google.protobuf.Int64Value rank = 1;
 }
 
 message ZRemReq{
@@ -101,7 +103,7 @@ message ZRemReq{
 }
 
 message ZRemResp{
-  optional int64 ret = 1;
+  google.protobuf.Int64Value ret = 1;
 }
 
 message ZRemRangeByRankReq{
@@ -110,7 +112,7 @@ message ZRemRangeByRankReq{
   int64 end = 3;
 }
 message ZRemRangeByRankResp{
-  optional int64 ret = 1;
+  google.protobuf.Int64Value ret = 1;
 }
 
 message ZRemRangeByScoreReq{
@@ -119,7 +121,7 @@ message ZRemRangeByScoreReq{
   int64 end = 3;
 }
 message ZRemRangeByScoreResp{
-  optional int64 ret = 1;
+  google.protobuf.Int64Value ret = 1;
 }
 
 message ZRevRangeReq{
@@ -145,7 +147,7 @@ message ZRevRankReq{
   string member = 2;
 }
 message ZRevRankResp{
-  optional int64 rank = 1;
+  google.protobuf.Int64Value rank = 1;
 }
 
 message ZScoreReq{
@@ -153,7 +155,7 @@ message ZScoreReq{
   string member = 2;
 }
 message ZScoreResp{
-  optional int64 score = 1;
+  google.protobuf.Int64Value score = 1;
 }
 
 
