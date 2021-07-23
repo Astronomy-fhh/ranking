@@ -265,3 +265,8 @@
 {"L":"INFO","T":"2021-07-21 19:55:28","C":"client/client.go:57","M":"signal received: interrupt"}
 {"L":"INFO","T":"2021-07-21 19:55:34","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
 {"L":"INFO","T":"2021-07-21 19:55:47","C":"client/client.go:57","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-22 10:21:02","C":"client/client.go:57","M":"signal received: interrupt"}
+{"L":"INFO","T":"2021-07-22 10:21:13","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"FATAL","T":"2021-07-22 10:21:13","C":"rankctl/rankctl.go:39","M":"err:connection error: desc = \"transport: error while dialing: dial tcp 127.0.0.1:11917: connect: connection refused\"","S":"ranking/rankctl/rankctl.(*Client).InitHandle\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/rankctl/rankctl/rankctl.go:39\nranking/rankctl/rankctl.NewClient\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/rankctl/rankctl/rankctl.go:24\nmain.main\n\t/Users/fanhuhu/PhpstormProjects/GOPATH/src/ranking/rankctl/main.go:33\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203"}
+{"L":"INFO","T":"2021-07-22 10:21:48","C":"config/client.go:29","M":"configFromFile:&{127.0.0.1:11917}"}
+{"L":"INFO","T":"2021-07-22 12:14:22","C":"rankctl/rankctl.go:58","M":"signal received: interrupt"}

@@ -3,6 +3,7 @@ package servermain
 import (
 	"google.golang.org/grpc"
 	"net"
+	_ "net/http/pprof"
 	"os"
 	"os/signal"
 	"ranking/db"
@@ -54,8 +55,8 @@ func (rs *Server) ListenSignal()  {
 	select {
 	case s := <-chSignal:
 		log.Log.Infof("signal received: %v", s)
-		signal.Reset(syscall.SIGINT, syscall.SIGTERM)
 		db.Db.RDBSave()
+		signal.Reset(syscall.SIGINT, syscall.SIGTERM)
 		os.Exit(0)
 	}
 }

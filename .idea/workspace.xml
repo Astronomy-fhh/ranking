@@ -22,51 +22,15 @@
     <list default="true" id="c21bee2f-7d41-40e4-9616-a278d8a90f1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client" beforeDir="false" afterPath="$PROJECT_DIR$/client/client" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/rankctl/rankctl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/client/cmd.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/command/cmd.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/clientHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/clientHandle.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zAdd.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zAdd.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zCard.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zCard.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zCount.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zCount.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zIncrby.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zIncrby.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRange.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRangeByScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRem.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRem.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRemRangeByRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRemRangeByRank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRemRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRemRangeByScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRevRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRevRange.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zRevRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zRevRank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/core/handle/zrevRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/handle/zrevRangeByScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/rankctl/config/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/rankctl" beforeDir="false" afterPath="$PROJECT_DIR$/bin/rankctl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/server" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/zlist.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/zlist.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error/error.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/rank.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/rank.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/all.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/serverHandle.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/serverHandle.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zAdd.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zAdd.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zCard.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zCard.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zCount.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zCount.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zIncrby.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zIncrby.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRange.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRangeByScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRem.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRem.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRemRangeByRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRemRangeByRank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRemRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRemRangeByScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRevRange.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRevRange.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRevRangeByScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRevRangeByScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zRevRank.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zRevRank.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/handle/zScore.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/handle/zScore.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/servermain/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/servervisual/status.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/servermain/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/servermain/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/context_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/context_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +97,7 @@
       <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build ranking/server">
+  <component name="RunManager" selected="Go Test.TestContext in ranking/test (1)">
     <configuration name="go build ranking/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$" />
@@ -152,7 +116,7 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestContext in ranking/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestContext in ranking/test (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="ranking" />
       <working_directory value="$PROJECT_DIR$/test" />
       <framework value="gotest" />
@@ -187,18 +151,18 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build ranking/server" />
-      <item itemvalue="Go Test.TestContext in ranking/test" />
       <item itemvalue="Go Test.TestExit in ranking/test" />
       <item itemvalue="Go Test.TestPoint in ranking/test" />
       <item itemvalue="Go Build.go build ranking/client" />
+      <item itemvalue="Go Test.TestContext in ranking/test (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestContext in ranking/test (1)" />
         <item itemvalue="Go Build.go build ranking/server" />
         <item itemvalue="Go Build.go build ranking/client" />
         <item itemvalue="Go Test.TestPoint in ranking/test" />
         <item itemvalue="Go Test.TestExit in ranking/test" />
-        <item itemvalue="Go Test.TestContext in ranking/test" />
       </list>
     </recent_temporary>
   </component>
@@ -226,22 +190,22 @@
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
     <state x="280" y="780" key="#com.intellij.fileTypes.FileTypeChooser/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626686036172" />
-    <state width="1038" height="522" key="GridCell.Tab.0.bottom" timestamp="1626868072502">
+    <state width="1038" height="696" key="GridCell.Tab.0.bottom" timestamp="1626955816232">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.0.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072502" />
-    <state width="1038" height="522" key="GridCell.Tab.0.center" timestamp="1626868072501">
+    <state width="1038" height="696" key="GridCell.Tab.0.bottom/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816232" />
+    <state width="1038" height="696" key="GridCell.Tab.0.center" timestamp="1626955816231">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.0.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072501" />
-    <state width="1038" height="522" key="GridCell.Tab.0.left" timestamp="1626868072500">
+    <state width="1038" height="696" key="GridCell.Tab.0.center/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816231" />
+    <state width="1038" height="696" key="GridCell.Tab.0.left" timestamp="1626955816231">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.0.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072500" />
-    <state width="1038" height="522" key="GridCell.Tab.0.right" timestamp="1626868072502">
+    <state width="1038" height="696" key="GridCell.Tab.0.left/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816231" />
+    <state width="1038" height="696" key="GridCell.Tab.0.right" timestamp="1626955816232">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state width="1038" height="522" key="GridCell.Tab.0.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072502" />
+    <state width="1038" height="696" key="GridCell.Tab.0.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626955816232" />
     <state width="1038" height="522" key="GridCell.Tab.1.bottom" timestamp="1626868072504">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
@@ -258,18 +222,22 @@
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
     <state width="1038" height="522" key="GridCell.Tab.1.right/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626868072503" />
-    <state x="270" y="710" width="615" height="524" key="StructurePopup" timestamp="1626867522407">
+    <state x="270" y="710" width="615" height="524" key="StructurePopup" timestamp="1627007287951">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state x="270" y="710" width="615" height="524" key="StructurePopup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626867522407" />
+    <state x="270" y="710" width="615" height="524" key="StructurePopup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627007287951" />
     <state width="500" height="445" key="SwitcherDM" timestamp="1626851916273">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
     <state width="500" height="445" key="SwitcherDM/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626851916273" />
-    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup" timestamp="1626690395815">
+    <state width="282" height="419" key="documentation.popup.size" timestamp="1627007230085">
       <screen x="0" y="23" width="1080" height="1897" />
     </state>
-    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1626690395815" />
+    <state width="282" height="419" key="documentation.popup.size/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627007230085" />
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup" timestamp="1627007099911">
+      <screen x="0" y="23" width="1080" height="1897" />
+    </state>
+    <state x="205" y="468" width="670" height="676" key="search.everywhere.popup/-1920.322.1920.1057/0.23.1080.1897@0.23.1080.1897" timestamp="1627007099911" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -333,6 +301,11 @@
           <url>file://$PROJECT_DIR$/server/handle/zRemRangeByRank.go</url>
           <line>27</line>
           <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/test/context_test.go</url>
+          <line>7</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

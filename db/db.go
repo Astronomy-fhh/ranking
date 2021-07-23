@@ -3,6 +3,7 @@ package db
 import (
 	"bufio"
 	"encoding/binary"
+	"go.uber.org/atomic"
 	"google.golang.org/protobuf/proto"
 	"io"
 	"math"
@@ -10,7 +11,7 @@ import (
 	"os"
 	"ranking/log"
 	pb "ranking/proto"
-	config2 "ranking/server/config"
+	"ranking/server/config"
 	"ranking/util"
 	"sync"
 	"syscall"
@@ -20,8 +21,9 @@ import (
 var Db *DB
 
 type DB struct {
-	version uint64
-	initTime uint64
+	version    uint64
+	initTime   uint64
+	stop  atomic.Bool
 	containers map[string]*Container
 	sync.RWMutex
 }
@@ -33,77 +35,75 @@ func InitDB() {
 
 	err := Db.RDBLoad()
 	if err != nil {
-		log.Log.Fatalf("RDBLoad:fail:%v",err.Error())
+		log.Log.Fatalf("RDBLoad:fail:%v", err.Error())
 	}
-
-	//Db.GenTestData()
+	Db.GenTestData()
 	go Db.RDBSaveLoop()
 }
 
-func (db *DB) RDBSaveLoop()  {
-	timeInterval := config2.SConfig.RDBTimeIntervals
-	log.Log.Infof("RDBSaveLoop:start:timeInterval:%v",timeInterval)
+func (db *DB) RDBSaveLoop() {
+	timeInterval := config.SConfig.RDBTimeIntervals
+	log.Log.Infof("RDBSaveLoop:start:timeInterval:%v", timeInterval)
 
 	ticker := time.NewTicker(time.Duration(timeInterval) * time.Second)
-	canSaveChan := make(chan bool ,1)
-	canSaveChan <- true
+
 	defer ticker.Stop()
 	for {
 		select {
 		case <-ticker.C:
-			select {
-			case <-canSaveChan :
-				db.RDBSave()
-				canSaveChan <- true
-			}
+			db.RDBSave()
 		}
 	}
 }
 
-func (db *DB) RDBSave()  {
-	log.Log.Info("RDBSave:start...")
+func (db *DB) RDBSave() {
 	db.Lock()
 	defer db.Unlock()
+	log.Log.Info("RDBSave:start...")
 	rdb := &pb.RDB{}
 	data := make(map[string]*pb.Container)
 	rdb.Version = db.version + 1
 	for key, container := range db.containers {
-		container.Lock()
+		container.RLock()
+		dict := make(map[string]int64,len(container.Dict))
+		for member, score := range container.Dict {
+			dict[member] = score
+		}
+		container.RUnlock()
 		c := pb.Container{
-			Data: container.Dict,
+			Data: dict,
 		}
 		data[key] = &c
-		container.Unlock()
 	}
 	rdb.Containers = data
 	bytes, err := proto.Marshal(rdb)
 	if err != nil {
-		log.Log.Warnf("RDBSave:fail:%v",err.Error())
+		log.Log.Warnf("RDBSave:fail:%v", err.Error())
 		return
 	}
-	head := make([]byte,8)
+	head := make([]byte, 8)
 	binary.BigEndian.PutUint64(head, uint64(len(bytes)))
-	log.Log.Debugf("RDBSave:size:%v",uint64(len(bytes)))
+	log.Log.Debugf("RDBSave:size:%v", uint64(len(bytes)))
 
-	bytes = append(head,bytes...)
-	err = saveBytes(bytes, config2.SConfig.RDBFileName)
+	bytes = append(head, bytes...)
+	err = saveBytes(bytes, config.SConfig.RDBFileName)
 	if err != nil {
-		log.Log.Warnf("RDBSave:fail:%v",err.Error())
+		log.Log.Warnf("RDBSave:fail:%v", err.Error())
 		return
 	}
 	log.Log.Info("RDBSave:ok")
 }
 
-func (db *DB) RDBLoad()error  {
+func (db *DB) RDBLoad() error {
 	log.Log.Info("RDBLoad:start...")
 
-	err := syscall.Access(config2.SConfig.RDBFileName, syscall.F_OK)
+	err := syscall.Access(config.SConfig.RDBFileName, syscall.F_OK)
 	if err != nil {
-		log.Log.Warnf("RDBLoad:not found file:%v", config2.SConfig.RDBFileName)
+		log.Log.Warnf("RDBLoad:not found file:%v", config.SConfig.RDBFileName)
 		return nil
 	}
 
-	f, err := os.OpenFile(config2.SConfig.RDBFileName, os.O_RDONLY , os.ModePerm)
+	f, err := os.OpenFile(config.SConfig.RDBFileName, os.O_RDONLY, os.ModePerm)
 	if err != nil {
 		return err
 	}
@@ -115,7 +115,7 @@ func (db *DB) RDBLoad()error  {
 	if err != nil {
 		return err
 	}
-	log.Log.Debugf("RDBLoad:payloadSize:%d",payloadSize)
+	log.Log.Debugf("RDBLoad:payloadSize:%d", payloadSize)
 
 	payload := make([]byte, payloadSize)
 	err = binary.Read(reader, binary.BigEndian, &payload)
@@ -127,8 +127,8 @@ func (db *DB) RDBLoad()error  {
 	if err != nil {
 		return err
 	}
-    Db.version = rdb.Version
-    Db.initTime = rdb.Timestamp
+	Db.version = rdb.Version
+	Db.initTime = rdb.Timestamp
 	for key, containerData := range rdb.Containers {
 		container := db.GetOrInitContainer(key)
 		dict := containerData.Data
@@ -138,7 +138,7 @@ func (db *DB) RDBLoad()error  {
 	return nil
 }
 
-func saveBytes(bytes []byte,filename string)error  {
+func saveBytes(bytes []byte, filename string) error {
 	f, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
@@ -154,7 +154,9 @@ func saveBytes(bytes []byte,filename string)error  {
 }
 
 func (db *DB) GetOrInitContainer(key string) *Container {
+	db.RLock()
 	_, ok := db.containers[key]
+	db.RUnlock()
 	if !ok {
 		db.Lock()
 		defer db.Unlock()
@@ -177,28 +179,40 @@ func (db *DB) GetContainer(key string) *Container {
 	return db.containers[key]
 }
 
-func (db *DB) GenTestData()  {
-	keyC := 1
-	keyL := 3
-	mC := 20
+func (db *DB) GenTestData() {
+	log.Log.Info("GenTestData...start")
+
+	keyC := 1000
+	keyL := 10
+	mC := 1000
 	mL := 15
 	sL := 2
 
+	runLimit := make(chan bool, 10)
+	for i := 0; i < 10; i++ {
+		runLimit <- true
+	}
 	for i := 0; i < keyC; i++ {
-			key := util.GetRandomString(keyL)
-			container := db.GetOrInitContainer(key)
-			val := make(map[string]int64,mC)
-			for j := 0; j < mC; j++ {
-				member := util.GetRandomString(mL)
-				score := rand.Int63n(int64(math.Pow(10, float64(sL))))
-				val[member] = score
-			}
-			a, u := container.Add(val)
-			log.Log.Infof("GenTestData:key:%d:%s,addC:%d,updateC:%d", i,key,a,u)
+		select {
+		case <-runLimit:
+			go func(i int) {
+				key := util.GetRandomString(keyL)
+				c := db.GetOrInitContainer(key)
+				val := make(map[string]int64, mC)
+				for j := 0; j < mC; j++ {
+					member := util.GetRandomString(mL)
+					score := rand.Int63n(int64(math.Pow(10, float64(sL))))
+					val[member] = score
+				}
+				a, u := c.Add(val)
+				log.Log.Infof("GenTestData:key:%d:%s,addC:%d,updateC:%d", i, key, a, u)
+				runLimit <- true
+			}(i)
+		}
 	}
 }
 
-func (db *DB) AllObjs()map[string][]*pb.Obj  {
+func (db *DB) AllObjs() map[string][]*pb.Obj {
 	payload := make(map[string][]*pb.Obj)
 	for key, container := range db.containers {
 		ranks := container.GetRangeByRank(0, -1)
@@ -207,7 +221,7 @@ func (db *DB) AllObjs()map[string][]*pb.Obj  {
 	return payload
 }
 
-func (db *DB) ZRem(key string, members []string)int64  {
+func (db *DB) ZRem(key string, members []string) int64 {
 	var ret int64
 	c := db.GetContainer(key)
 	if c == nil {
@@ -216,95 +230,95 @@ func (db *DB) ZRem(key string, members []string)int64  {
 	return c.DelMembers(members)
 }
 
-func (db *DB) ZRemRangeByRank(key string,start,end int64)int64 {
+func (db *DB) ZRemRangeByRank(key string, start, end int64) int64 {
 	var ret int64
 	c := db.GetContainer(key)
 	if c == nil {
 		return ret
 	}
-	return c.DelRangeByRank(start,end)
+	return c.DelRangeByRank(start, end)
 }
 
-func (db *DB) ZRemRangeByScore(key string, start int64, end int64)int64 {
+func (db *DB) ZRemRangeByScore(key string, start int64, end int64) int64 {
 	var ret int64
 	c := db.GetContainer(key)
 	if c == nil {
 		return ret
 	}
-	return c.DelRangeByScore(start,end)
+	return c.DelRangeByScore(start, end)
 }
 
-func (db *DB) ZRevRange(key string, start int64, end int64)[]*pb.Obj {
+func (db *DB) ZRevRange(key string, start int64, end int64) []*pb.Obj {
 	c := db.GetContainer(key)
 	if c == nil {
-		ret := make([]*pb.Obj,0)
+		ret := make([]*pb.Obj, 0)
 		return ret
 	}
 	objs := c.GetRevRangeByRank(start, end)
 	return objs
 }
 
-func (db *DB) ZRevRangeByScore(key string, start int64, end int64)[]*pb.Obj {
+func (db *DB) ZRevRangeByScore(key string, start int64, end int64) []*pb.Obj {
 	c := db.GetContainer(key)
 	if c == nil {
-		res := make([]*pb.Obj,0)
+		res := make([]*pb.Obj, 0)
 		return res
 	}
 	objs := c.GetRevRangeByScore(start, end)
 	return objs
 }
 
-func (db *DB) ZRevRank(key string, member string)(int64,bool) {
+func (db *DB) ZRevRank(key string, member string) (int64, bool) {
 	var ret int64
 	c := db.GetContainer(key)
 	if c == nil {
-		return ret,false
+		return ret, false
 	}
 	return c.GetRevRank(member)
 }
 
-func (db *DB) ZScore(key string, member string)(int64,bool) {
+func (db *DB) ZScore(key string, member string) (int64, bool) {
 	var ret int64
 	c := db.GetContainer(key)
 	if c == nil {
-		return ret,false
+		return ret, false
 	}
 	return c.GetScore(member)
 }
 
-func (db *DB) ZCard(key string)(int64,bool) {
+func (db *DB) ZCard(key string) (int64, bool) {
 	var ret int64
 	c := db.GetContainer(key)
 	if c == nil {
-		return ret,false
+		return ret, false
 	}
 	c.RLock()
 	defer c.RUnlock()
-	return c.Size(),true
+	return c.Size(), true
 }
 
-func (db *DB) ZAdd(key string, vars map[string]int64)(int64,int64) {
+func (db *DB) ZAdd(key string, vars map[string]int64) (int64, int64) {
 	c := db.GetOrInitContainer(key)
 	return c.Add(vars)
 }
 
-func (db *DB) ZCount(key string,start,end int64)(int64,bool)  {
+func (db *DB) ZCount(key string, start, end int64) (int64, bool) {
 	var ret int64
 	c := db.GetContainer(key)
 	if c == nil {
-		return ret,false
-	}else {
-		return c.GetCountByRangeScore(start,end),true
+		return ret, false
+	} else {
+		return c.GetCountByRangeScore(start, end), true
 	}
 }
 
-func (db *DB) ZIncrBy(key string, incr int64, member string)int64 {
+func (db *DB) ZIncrBy(key string, incr int64, member string) int64 {
 	container := db.GetOrInitContainer(key)
-	return container.Inceby(incr,member)
+	return container.Inceby(incr, member)
 }
 
-func (db *DB) ZRange(key string, start int64, end int64)[]*pb.Obj {
-	ret := make([]*pb.Obj,0)
+func (db *DB) ZRange(key string, start int64, end int64) []*pb.Obj {
+	ret := make([]*pb.Obj, 0)
 	c := db.GetContainer(key)
 	if c != nil {
 		ret = c.GetRangeByRank(start, end)
@@ -312,8 +326,8 @@ func (db *DB) ZRange(key string, start int64, end int64)[]*pb.Obj {
 	return ret
 }
 
-func (db *DB) ZRangeByScore(key string, start int64, end int64)[]*pb.Obj {
-	ret := make([]*pb.Obj,0)
+func (db *DB) ZRangeByScore(key string, start int64, end int64) []*pb.Obj {
+	ret := make([]*pb.Obj, 0)
 	c := db.GetContainer(key)
 	if c != nil {
 		ret = c.GetRangeByScore(start, end)
@@ -321,14 +335,10 @@ func (db *DB) ZRangeByScore(key string, start int64, end int64)[]*pb.Obj {
 	return ret
 }
 
-func (db *DB) ZRank(key string, member string)(int64,bool) {
+func (db *DB) ZRank(key string, member string) (int64, bool) {
 	c := db.GetContainer(key)
 	if c != nil {
 		return c.GetRank(member)
 	}
-	return 0,false
+	return 0, false
 }
-
-
-
-
